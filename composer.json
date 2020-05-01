@@ -1,0 +1,8 @@
+{
+    "name": "novus/gsk",
+    "type": "wordpress-theme",
+    "license": "GNU GPL v2",
+    "autoload": {
+        "psr-4": {"Gsk\\": "src/"}
+    }
+}

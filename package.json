@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "css": "node-sass --output-style compressed --indent-type tab --indent-width 1 -w sass -r -o .",
+        "postcss": "postcss style.css --no-map --use autoprefixer -o style.css --autoprefixer.browsers=\"last 2 versions, ie >= 9\"",
+        "editor": "node-sass sass/style-editor.scss style-editor.css",
+        "watch": "node-sass --output-style expanded --indent-type tab --indent-width 1 -w sass -r -o ."
+    },
+    "dependencies": {
+        "node-sass": "^4.14.0"
+    },
+    "devDependencies": {
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.11"
+    }
+}

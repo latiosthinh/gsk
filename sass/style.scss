@@ -1,0 +1,22 @@
+/*!
+Theme Name: gsk
+Theme URI: https://novus.com.vn/
+Author: NovusVN
+Author URI: https://novus.com.vn/
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: gsk
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+*/
+
+@import "base/normalize";
+@import "base/grid";
+@import "base/vars";
+@import "base/mixin";
+@import "base/elements";
+@import "base/utilities";
+
+@import "components/common/header.scss";
+@import "components/common/footer.scss";
