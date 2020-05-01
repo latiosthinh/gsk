@@ -1,0 +1,21 @@
+@font-face {
+    font-family: iCiel;
+    src: url(fonts/iCielGTAmerica-Medium.otf) format("opentype");
+}
+
+@font-face {
+    font-family: iCiel;
+    src: url(fonts/iCielGTAmerica-UltraLightExpanded.otf) format("opentype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Dimitri;
+    src: url(fonts/DIMITRI.ttf) format("truetype");
+}
+
+$font-iciel: 'iCiel', sans-serif;
+$font-dimitri: 'Dimitri', sans-serif;
+
+$f1: $font-iciel;
+$f2: $font-dimitri;
