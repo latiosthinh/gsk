@@ -26,34 +26,32 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'gsk' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$gsk_description = get_bloginfo( 'description', 'display' );
-			if ( $gsk_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $gsk_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+		<div class="site-nav">
+			<?php the_custom_logo(); ?>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'gsk' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
+			<ul class="action">
+				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( 'login' ) ?>">Login</a></li>
+				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( 'cart' ) ?>">Cart (<?php echo "0" ?>)</a></li>
+			</ul>
+
+			<nav id="site-navigation" class="main-navigation container-fluid">
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'gsk' ); ?></button>
+				<?php
+				wp_nav_menu(
+					[
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+					]
+				);
+				?>
+			</nav><!-- #site-navigation -->
+
+		</div>
+
+		<h1 class="fd sz-250 txt-yl stroke">GSK</h1>
+
+		<!-- Raffle begin -->
+		<?php get_template_part( 'template-parts/raffle/content-raffle' ); ?>
+		<!-- Raffle end -->
+
 	</header><!-- #masthead -->

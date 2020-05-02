@@ -1,3 +1,20 @@
+// Font family
+.fi {
+    font-family: $f1; // iCiel
+}
+.fd {
+    font-family: $f2; // Dimitri
+}
+.fw-300 {
+    font-weight: 300;
+}
+.ttu {
+    text-transform: uppercase;
+}
+.ttc {
+    text-transform: capitalize;
+}
+
 // Font size
 .sz-16 {
     font-size: 16px;
@@ -17,6 +34,24 @@
 .sz-60 {
     font-size: 60px;
 }
+.sz-72 {
+    font-size: 72px;
+}
+.sz-250 {
+    font-size: 250px;
+}
+
+
+// Color
+.txt-yl {
+    color: $yellow;
+}
+
+
+// Background
+.bg-yl {
+    background: $yellow;
+}
 
 
 // Common
@@ -25,4 +60,14 @@
 }
 .bs {
     box-shadow: -15px -15px 25px rgba(#000, 0.6);
+}
+.stroke {
+    @supports (-webkit-text-stroke: 5px #fff) {
+        -webkit-text-stroke: 5px #fff;
+    }
+}
+.btn {
+    padding: 12px 35px 15px;
+    border-radius: 999px;
+    color: #000000;
 }

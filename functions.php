@@ -67,6 +67,9 @@ if ( ! function_exists( 'gsk_setup' ) ) :
 				'flex-height' => true,
 			)
 		);
+
+		add_image_size( 'thumb-385', 385, 385, true );
+		add_image_size( 'thumb-315', 315, 170, true );
 	}
 endif;
 add_action( 'after_setup_theme', 'gsk_setup' );

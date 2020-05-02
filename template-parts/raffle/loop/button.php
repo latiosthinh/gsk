@@ -1,0 +1,1 @@
+<a class="btn bg-yl ttu fw-300" href="<?php the_permalink() ?>">View more</a>

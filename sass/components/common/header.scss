@@ -1,0 +1,9 @@
+.screen-reader-text {
+    display: none;
+}
+
+.menu-toggle {
+    @media all and (min-width:1200px) {
+        display: none;
+    }
+}
