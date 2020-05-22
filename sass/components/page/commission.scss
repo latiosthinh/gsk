@@ -1,0 +1,123 @@
+.selection {
+    background: $yellow;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    margin-top: 50px;
+    
+    .name {
+        position: absolute;
+        left: 70px;
+        top: 30%;
+
+        h3 {
+            position: absolute;
+            font-family: $f2;
+            color: #231f20;
+            font-size: 70px;
+            text-transform: uppercase;
+            left: 0;
+            top: 0;
+            line-height: 1;
+            @supports (-webkit-text-stroke: 2px $yellow) {
+                -webkit-text-stroke: 2px $yellow;
+            }
+        }
+    }
+}
+
+.company {
+    margin-top: 85px;
+
+    h3 {
+        font-weight: 300;
+        font-size: 48px;
+        margin-bottom: 70px;
+        text-align: center;
+        position: relative;
+
+        &:after {
+            content: '';
+            display: block;
+            width: 200px;
+            height: 10px;
+            background: $yellow;
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+    }
+
+    .list {
+        .item {
+            flex: 0 0 20%;
+            padding: 0px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            a {
+                display: inline-block;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin: 10px auto;
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+.gang {
+    padding: 100px 0px 60px;
+    background: url( images/header-vector.png ) #fff center center /contain no-repeat;
+}
+
+.submission {
+    margin-bottom: 50px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+    
+    .top {
+        background: #bcbcbc;
+        display: flex;
+        position: relative;
+        justify-content: flex-end;
+
+        h3 {
+            position: absolute;
+            text-align: right;
+            font-family: $f2;
+            color: #231f20;
+            font-size: 70px;
+            text-transform: uppercase;
+            left: 70px;
+            top: 30%;
+            line-height: 1;
+            @supports (-webkit-text-stroke: 2px $yellow) {
+                -webkit-text-stroke: 2px $yellow;
+            }
+        }
+    }
+
+    .content {
+        padding: 25px 0 25px 33%;
+        position: relative;
+
+        &:before {
+            content: '';
+            display: block;
+            width: 830px;
+            height: 150%;
+            background: $yellow;
+            position: absolute;
+            top: -40%;
+            left: 50%;
+            transform: translateX(-50%) skew(30deg, 3deg);
+            z-index: -1;
+        }
+    }
+}
