@@ -1,0 +1,41 @@
+footer {
+    background: url( images/bg-footer.png ) right center / 100% no-repeat;
+    
+    .row {
+        padding: 25px 350px 25px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .info {
+        p {
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        a {
+            font-weight: 300;
+            color: #000000;
+        }
+    }
+
+    .social {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            color: #000000;
+        }
+
+        ul {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+
+            li {
+                margin-left: 25px;
+            }
+        }
+    }
+}

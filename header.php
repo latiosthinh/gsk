@@ -27,10 +27,12 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-nav">
-			<?php the_custom_logo(); ?>
+			<div class="site-branding">
+				<?php the_custom_logo(); ?>
+			</div>
 
-			<ul class="action">
-				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( 'login' ) ?>">Login</a></li>
+			<ul class="actions">
+				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( 'dashboard' ) ?>">Login</a></li>
 				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( 'cart' ) ?>">Cart (<?php echo "0" ?>)</a></li>
 			</ul>
 
@@ -48,10 +50,38 @@
 
 		</div>
 
-		<h1 class="fd sz-250 txt-yl stroke">GSK</h1>
+		<h1 class="fd sz-250 txt-yl stroke text-title">GSK</h1>
+
+		<img class="header-vector" src="<?php echo IMG . '/header-vector.png' ?>">
 
 		<!-- Raffle begin -->
-		<?php get_template_part( 'template-parts/raffle/content-raffle' ); ?>
+		<div class="site-raffle">
+		<?php
+			$args = [
+				'post_type'  => 'product',
+				'meta_query' => [
+					[
+						'key'   => 'gskon_raffle',
+						'value' => 'true',
+					],
+				],
+			];
+
+			$raffle = new WP_Query($args);
+
+			if ( $raffle->have_posts() ) :
+				while ( $raffle->have_posts() ) : $raffle->the_post();
+
+					get_template_part( 'template-parts/raffle/content-raffle' );
+
+				endwhile;
+			endif;
+			
+			wp_reset_postdata();
+		?>
+		</div>
 		<!-- Raffle end -->
+
+		<a class="btn bg-yl ttu fw-300 smooth see-more" href="<?php the_permalink() ?>">See more</a>
 
 	</header><!-- #masthead -->
