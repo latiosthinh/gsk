@@ -48,12 +48,6 @@
 }
 
 
-// Background
-.bg-yl {
-    background: $yellow;
-}
-
-
 // Common
 .smooth {
     transition: .2s;
@@ -62,12 +56,28 @@
     box-shadow: -15px -15px 25px rgba(#000, 0.6);
 }
 .stroke {
-    @supports (-webkit-text-stroke: 5px #fff) {
-        -webkit-text-stroke: 5px #fff;
+    @supports (-webkit-text-stroke: 4px #fff) {
+        -webkit-text-stroke: 4px #fff;
     }
 }
+
+.stroke-2 {
+    @supports (-webkit-text-stroke: 1px #fff) {
+        -webkit-text-stroke: 1px #fff;
+    }
+}
+
 .btn {
-    padding: 12px 35px 15px;
+    padding: 14px 35px 13px;
     border-radius: 999px;
     color: #000000;
+
+    &.bg-yl {
+        background: $yellow;
+        
+        &:hover {
+            background: #000000;
+            color: $yellow;
+        }
+    }
 }

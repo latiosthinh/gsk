@@ -1,0 +1,72 @@
+.shipping {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+        display: inline-block;
+        text-align: center;
+        margin: 65px auto;
+        padding: 10px 20px;
+        background: $yellow;
+    }
+
+    .tabs {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 100px;
+    }
+
+    .tabs-nav {
+        padding-right: 0;
+        overflow: hidden;
+
+        a {
+            display: block;
+            width: 85%;
+            padding: 10px 35px;
+            margin: 20px 0;
+            border: 1px solid $yellow;
+            color: #000000;
+            position: relative;
+
+            &:after {
+                content: '';
+                display: none;
+                position: absolute;
+                left: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                background: $yellow;
+                height: 1px;
+                width: 200px;
+            }
+
+            &.active {
+                background: $yellow;
+
+                &:after {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .tabs-panel {
+        div {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            padding: 10px 35px;
+            height: 100%;
+            border: 1px solid $yellow;
+            align-items: center;
+            display: none;
+
+            &.active {
+                display: flex;
+            }
+        }
+    }
+}

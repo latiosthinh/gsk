@@ -3,6 +3,7 @@
         "css": "node-sass --output-style compressed --indent-type tab --indent-width 1 -w sass -r -o .",
         "postcss": "postcss style.css --no-map --use autoprefixer -o style.css --autoprefixer.browsers=\"last 2 versions, ie >= 9\"",
         "editor": "node-sass sass/style-editor.scss style-editor.css",
+        "admin": "node-sass sass/admin.scss admin/admin.css",
         "watch": "node-sass --output-style expanded --indent-type tab --indent-width 1 -w sass -r -o ."
     },
     "dependencies": {

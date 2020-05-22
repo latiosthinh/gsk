@@ -13,6 +13,7 @@ if ( ! defined( '_S_VERSION' ) ) {
 
 define( 'JS', get_template_directory_uri() . '/js' );
 define( 'IMG', get_template_directory_uri() . '/images' );
+define( 'ADMIN', get_template_directory_uri() . '/admin' );
 
 if ( ! function_exists( 'gsk_setup' ) ) :
 	function gsk_setup() {
@@ -60,12 +61,12 @@ if ( ! function_exists( 'gsk_setup' ) ) :
 
 		add_theme_support(
 			'custom-logo',
-			array(
+			[
 				'height'      => 250,
 				'width'       => 250,
 				'flex-width'  => true,
 				'flex-height' => true,
-			)
+			]
 		);
 
 		add_image_size( 'thumb-385', 385, 385, true );
@@ -98,6 +99,7 @@ function gsk_scripts() {
 
 	wp_enqueue_script( 'gsk-navigation', JS. '/navigation.js', [], _S_VERSION, true );
 	wp_enqueue_script( 'gsk-skip-link-focus-fix', JS . '/skip-link-focus-fix.js', [], _S_VERSION, true );
+	wp_enqueue_script( 'gsk-script', JS . '/script.js', ['jquery'], _S_VERSION, true );
 
 
 
@@ -108,11 +110,22 @@ function gsk_scripts() {
 add_action( 'wp_enqueue_scripts', 'gsk_scripts' );
 
 
+function gsk_admin_script() {
+	wp_enqueue_style( 'gsk-admin', ADMIN . '/admin.css', [], _S_VERSION );
+}
+
+add_action( 'admin_enqueue_scripts', 'gsk_admin_script', 10, 1 );
+
+
+require get_template_directory() . '/inc/disable.php';
+require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/gsk_metabox.php';
+
+require get_template_directory() . '/inc/post-type.php';
+require get_template_directory() . '/inc/taxonomy.php';
 
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
-require get_template_directory() . '/inc/customizer.php';
-
 
 
 if ( defined( 'JETPACK__VERSION' ) ) {

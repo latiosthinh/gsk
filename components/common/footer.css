@@ -1,0 +1,39 @@
+footer {
+	background: url(images/bg-footer.png) right center/100% no-repeat;
+}
+
+footer .row {
+	padding: 25px 350px 25px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+footer .info p {
+	text-transform: uppercase;
+	font-weight: 300;
+	margin-bottom: 30px;
+}
+
+footer .info a {
+	font-weight: 300;
+	color: #000000;
+}
+
+footer .social {
+	display: flex;
+	flex-direction: column;
+}
+
+footer .social a {
+	color: #000000;
+}
+
+footer .social ul {
+	margin-top: 30px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+footer .social ul li {
+	margin-left: 25px;
+}

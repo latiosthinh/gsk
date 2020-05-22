@@ -1,0 +1,13 @@
+.screen-reader-text {
+	display: none;
+}
+
+@media all and (min-width: 1200px) {
+	.menu-toggle {
+		display: none;
+	}
+}
+
+.site-nav {
+	padding: 30px 35px;
+}
