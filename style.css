@@ -1228,10 +1228,17 @@ header .see-more {
 	background: #ffa200;
 }
 
+.site-nav .site-branding {
+	position: relative;
+	z-index: 9;
+}
+
 .site-nav .actions {
 	display: flex;
 	padding-left: 0;
 	margin: 30px 0 100px 0;
+	position: relative;
+	z-index: 9;
 }
 
 .site-nav .actions li a {
@@ -1274,6 +1281,10 @@ header .see-more {
 	color: #ffffff;
 }
 
+.main-navigation ul li.menu-item-has-children {
+	position: relative;
+}
+
 .main-navigation ul li.menu-item-has-children > a {
 	position: relative;
 }
@@ -1299,6 +1310,9 @@ header .see-more {
 .main-navigation ul li ul {
 	padding-left: 20px;
 	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
 }
 
 .site-raffle {
@@ -1332,14 +1346,14 @@ header .see-more {
 	z-index: 8;
 	right: 0;
 	bottom: 0;
-	padding: 25px 0 40px;
+	padding: 25px 45px 40px 0;
 }
 
 .raffle-countdown:after {
 	content: '';
 	background: rgba(255, 162, 0, 0.75);
 	display: block;
-	width: 130%;
+	width: 150%;
 	height: 100%;
 	position: absolute;
 	z-index: -1;
@@ -1452,6 +1466,27 @@ footer .social ul li {
 	margin: 40px 0;
 }
 
+.page-template-shiping-return .content {
+	margin-bottom: 50px;
+}
+
+.page-template-shiping-return .content h1, .page-template-shiping-return .content h2, .page-template-shiping-return .content h3, .page-template-shiping-return .content h4 {
+	font-size: 36px;
+	font-weight: 300;
+	margin-bottom: 15px;
+}
+
+.page-template-shiping-return .content p {
+	font-weight: 300;
+	margin: 15px 0;
+}
+
+.page-template-shiping-return .content .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .shipping {
 	display: flex;
 	flex-direction: column;
@@ -1521,4 +1556,52 @@ footer .social ul li {
 
 .shipping .tabs-panel div.active {
 	display: flex;
+}
+
+.contact {
+	margin-bottom: 60px;
+}
+
+.contact h2 {
+	font-size: 48px;
+	font-weight: 300;
+	text-align: center;
+	color: #ffa200;
+	margin: 50px 0;
+}
+
+.contact h2:after {
+	content: '';
+	display: block;
+	width: 200px;
+	height: 8px;
+	background: #b2b2b2;
+	margin: 30px auto;
+}
+
+.contact .social div {
+	font-weight: 300;
+	background: #ffffff;
+	padding: 75px 55px 150px;
+	width: 90%;
+}
+
+.contact .social h3 {
+	font-weight: 300;
+	margin-bottom: 30px;
+}
+
+.contact .social a {
+	display: flex;
+	align-items: center;
+	margin-bottom: 18px;
+	color: #000000;
+}
+
+.contact .social a:hover {
+	color: #ffa200;
+}
+
+.contact .social a img {
+	margin-right: 10px;
 }

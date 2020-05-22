@@ -1,9 +1,13 @@
 ( function( $ ) {
-    $( '.menu-item-has-children' ).click( function() {
-        $( this ).toggleClass( 'active' )
+    $( '.menu-item-has-children > a' ).click( function( e ) {
+        e.preventDefault();
+        
+        $( this ).parent().toggleClass( 'active' )
     } )
 
-    $( '.tabs-nav a' ).click( function() {
+    $( '.tabs-nav a' ).click( function( e ) {
+        e.preventDefault()
+
         $( '.tabs-nav a' ).removeClass( 'active' )
         $( '.tabs-panel div' ).removeClass( 'active' )
 

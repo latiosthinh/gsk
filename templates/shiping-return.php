@@ -24,5 +24,13 @@ get_header();
     </div>
 </section>
 
+<section class="content">
+    <div class="container pad-0">
+        <div class="col-md-10">
+            <?php the_content(); ?>
+        </div>
+    </div>
+</section>
+
 <?php
 get_footer();
