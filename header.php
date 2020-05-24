@@ -58,6 +58,10 @@
 			<h1 class="fd sz-110 txt-yl stroke text-title">CATALOG</h1>
 		<?php endif; ?>
 
+		<?php if ( is_page_template( 'templates/dashboard.php' ) ) : ?>
+			<h1 class="fd sz-80 txt-yl stroke text-title">DASHBOARD</h1>
+		<?php endif; ?>
+
 		<?php if ( is_home() ) : ?>
 			<h1 class="fd sz-110 txt-yl stroke text-title">STORY</h1>
 		<?php endif; ?>

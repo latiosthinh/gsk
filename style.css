@@ -1124,8 +1124,12 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 60px;
 }
 
-.sz-72 {
+.sz-80 {
 	font-size: 72px;
+}
+
+.sz-90 {
+	font-size: 90px;
 }
 
 .sz-110 {
@@ -1745,7 +1749,7 @@ div.selection .name h3 {
 .login h2 {
 	font-weight: 300;
 	text-align: center;
-	margin: 100px 0px 60px;
+	margin: 100px 0px 30px;
 	font-size: 48px;
 }
 
@@ -1755,23 +1759,31 @@ div.selection .name h3 {
 	align-items: center;
 }
 
-.login .rwmb-form input[type=text], .login .rwmb-form input[type=password] {
+.login .rwmb-form .rwmb-input {
+	width: 100% !important;
+}
+
+.login .rwmb-form input[type=text], .login .rwmb-form input[type=password], .login .rwmb-form input[type=email] {
 	width: 100%;
 	background: none !important;
 	border: 0;
 	border-bottom: 1px solid #ffa200;
-	height: 50px;
-	line-height: 50px;
+	height: 30px;
+	line-height: 30px;
 	font-weight: 300;
 	padding: 0px 15px;
 }
 
 .login .rwmb-field {
-	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
 .login .rwmb-field label {
 	font-weight: 300;
+	white-space: nowrap;
+	margin-top: 30px;
+	display: block;
 }
 
 .login .rwmb-meta-box {
@@ -1839,6 +1851,101 @@ div.selection .name h3 {
 .login .register:hover {
 	background: #000000;
 	color: #ffa200;
+}
+
+.page-template-dashboard .text-title {
+	left: 170px;
+}
+
+.registration {
+	justify-content: center;
+	margin: 60px 0;
+}
+
+.registration h2 {
+	font-weight: 300;
+	text-align: center;
+	margin: 100px 0px 60px;
+	font-size: 48px;
+}
+
+.registration .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.registration .rwmb-form .rwmb-input {
+	width: 100% !important;
+}
+
+.registration .rwmb-form input[type=text], .registration .rwmb-form input[type=password], .registration .rwmb-form input[type=email] {
+	width: 100%;
+	background: none !important;
+	border: 0;
+	border-bottom: 1px solid #ffa200;
+	height: 30px;
+	line-height: 30px;
+	font-weight: 300;
+	padding: 0px 15px;
+}
+
+.registration .rwmb-field {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 50px !important;
+}
+
+.registration .rwmb-field label {
+	font-weight: 300;
+	white-space: nowrap;
+}
+
+.registration .rwmb-meta-box {
+	display: flex;
+	flex-direction: column;
+}
+
+.registration .rwmb-button-wrapper {
+	order: 5;
+}
+
+.registration .rwmb-button-wrapper button {
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	color: #000000;
+	background: #ffa200;
+	font-weight: 300;
+	text-transform: uppercase;
+	font-size: 14px;
+	height: 50px;
+	line-height: 50px;
+	width: 200px;
+	font-family: "iCiel", sans-serif;
+}
+
+.registration .rwmb-button-wrapper button:hover {
+	background: #000000;
+	color: #ffa200;
+}
+
+.registration .rwmb-custom_html-wrapper {
+	order: 4;
+	font-weight: 300;
+	margin: 40px 0px 30px;
+}
+
+.registration .rwmb-custom_html-wrapper a {
+	color: #000000;
+	text-decoration: underline;
+}
+
+.registration .notice {
+	font-weight: 300;
+	text-decoration: underline;
 }
 
 .post-type-archive-product .site-nav, .post-type-archive-product header:after {

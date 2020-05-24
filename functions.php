@@ -169,3 +169,17 @@ function gsk_add_woocommerce_support() {
 }
 
 add_action( 'after_setup_theme', 'gsk_add_woocommerce_support' );
+
+add_action( 'user_register', 'gsk_get_user_ip' );
+
+function gsk_get_user_ip( $user_id ) {
+	if ( ! empty($_SERVER['HTTP_CLIENT_IP']) ) {
+		$ip = $_SERVER['HTTP_CLIENT_IP'];
+	} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	} else {
+		$ip = $_SERVER['REMOTE_ADDR'];
+	}
+
+	update_user_meta( $user_id, 'gsk_ip_address', $ip );
+}
