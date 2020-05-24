@@ -1,0 +1,13 @@
+.home .products-slider .item {
+	padding: 0px 15px;
+	position: relative;
+}
+
+.home .products-slider .item:before {
+	content: '';
+	display: block;
+	width: 90px;
+	height: 90px;
+	top: -10px;
+	left: -10px;
+}

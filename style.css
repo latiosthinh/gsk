@@ -1418,6 +1418,85 @@ footer .social ul li {
 	margin-left: 25px;
 }
 
+.home {
+	overflow: hidden;
+}
+
+.home .products-slider {
+	transform: translateX(100px);
+	margin: 100px 0 80px;
+}
+
+.home .products-slider .slick-list {
+	overflow-x: hidden;
+	overflow-y: visible !important;
+}
+
+.home .products-slider .item {
+	padding: 10px 15px;
+	position: relative;
+}
+
+.home .products-slider .item:before {
+	content: '';
+	display: block;
+	width: 90px;
+	height: 90px;
+	position: absolute;
+	z-index: -1;
+	top: -10px;
+	left: 5px;
+	background: #ffa200;
+}
+
+.home .products-slider .item:hover:before {
+	background: #b2b2b2;
+}
+
+.home .products-slider .item:hover h2 {
+	display: block;
+}
+
+.home .products-slider .item h2 {
+	padding: 22px 25px;
+	background: rgba(0, 0, 0, 0.9);
+	text-transform: uppercase;
+	font-size: 16px;
+	color: #ffffff;
+	position: absolute;
+	bottom: 10px;
+	left: 15px;
+	right: 15px;
+	display: none;
+}
+
+.home .products-slider .slick-arrow {
+	position: absolute;
+	top: calc( 100% - 17px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+	cursor: pointer;
+}
+
+.home .products-slider .slick-arrow.slick-next {
+	left: calc( 70% + 80px);
+	background: #ffa200;
+}
+
+.home .products-slider .slick-arrow.slick-prev {
+	left: 70%;
+	background: #b2b2b2;
+}
+
+.home .link-to-shop {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
 .page-template-raffle header:after {
 	background: #00d2ff;
 }
@@ -1618,7 +1697,7 @@ footer .social ul li {
 	margin-right: 10px;
 }
 
-div.selection {
+section.selection {
 	background: #ffa200;
 	display: flex;
 	justify-content: flex-end;
@@ -1626,13 +1705,13 @@ div.selection {
 	margin-top: 50px;
 }
 
-div.selection .name {
+section.selection .name {
 	position: absolute;
 	left: 70px;
 	top: 30%;
 }
 
-div.selection .name h3 {
+section.selection .name h3 {
 	position: absolute;
 	font-family: "Dimitri", sans-serif;
 	color: #231f20;
@@ -1644,7 +1723,7 @@ div.selection .name h3 {
 }
 
 @supports (-webkit-text-stroke: 2px #ffa200) {
-	div.selection .name h3 {
+	section.selection .name h3 {
 		-webkit-text-stroke: 2px #ffa200;
 	}
 }

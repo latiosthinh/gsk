@@ -107,12 +107,14 @@ add_action( 'widgets_init', 'gsk_widgets_init' );
  */
 function gsk_scripts() {
 	wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css', [], _S_VERSION );
+	wp_enqueue_style( 'slick', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css', [], _S_VERSION );
 
 	wp_enqueue_style( 'gsk-style', get_stylesheet_uri(), [], _S_VERSION );
 
 
 	wp_enqueue_script( 'gsk-navigation', JS. '/navigation.js', [], _S_VERSION, true );
-	wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', [], _S_VERSION, true );
+	wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', [ 'jquery' ], _S_VERSION, true );
+	wp_enqueue_script( 'slick', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js', ['jquery'], _S_VERSION, true );
 	wp_enqueue_script( 'gsk-skip-link-focus-fix', JS . '/skip-link-focus-fix.js', ['jquery'], _S_VERSION, true );
 	wp_enqueue_script( 'gsk-script', JS . '/script.js', ['jquery'], _S_VERSION, true );
 
@@ -121,6 +123,16 @@ function gsk_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	$data = [
+		'home_url'  => home_url(),
+		'ajax_url'  => admin_url( 'admin-ajax.php' ),
+		'nonce'     => wp_create_nonce( 'ajax_nonce' ),
+		'js_dir'    => JS,
+		'img_dir'	=> IMG
+	];
+
+	wp_localize_script( 'gsk-script', 'php_data', $data );
 }
 add_action( 'wp_enqueue_scripts', 'gsk_scripts' );
 
