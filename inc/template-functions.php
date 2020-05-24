@@ -35,3 +35,19 @@ function gsk_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'gsk_pingback_header' );
+
+function get_url_by_template( $template ){
+	$url = null;
+	
+    $pages = query_posts( array(
+		'post_type' =>'page',
+		'meta_key'  =>'_wp_page_template',
+		'meta_value'=> $template->name
+	) );
+	
+    if ( isset( $pages[0] ) ) {
+        $url = get_page_link( $pages[0]->ID );
+	}
+	
+    return $url;
+}

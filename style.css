@@ -1418,10 +1418,6 @@ footer .social ul li {
 	margin-left: 25px;
 }
 
-.home {
-	overflow: hidden;
-}
-
 .home .products-slider {
 	transform: translateX(100px);
 	margin: 100px 0 80px;
@@ -1455,6 +1451,10 @@ footer .social ul li {
 
 .home .products-slider .item:hover h2 {
 	display: block;
+}
+
+.home .products-slider .item img {
+	width: 100%;
 }
 
 .home .products-slider .item h2 {
@@ -1495,6 +1495,58 @@ footer .social ul li {
 	display: flex;
 	justify-content: center;
 	width: 100%;
+}
+
+.home .intro {
+	padding: 50px 0 10px;
+	background: url(images/header-vector.png) #ffffff center center/contain no-repeat;
+}
+
+.home .intro .col-md-6:nth-child(2) {
+	position: relative;
+}
+
+.home .intro .col-md-6:nth-child(2) img {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.home .intro h2 {
+	font-size: 36px;
+	text-transform: uppercase;
+	text-align-last: left;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.home .intro h2 span {
+	z-index: 2;
+	position: inherit;
+}
+
+.home .intro h2:after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 0px;
+	left: -15px;
+	width: 400px;
+	height: 20px;
+	background: #d8d8d8;
+	z-index: 0;
+}
+
+.home .intro img {
+	width: 90%;
+	border: 5px solid #ffa200;
+	margin-bottom: 50px;
+	border-radius: 5px;
+}
+
+.home .intro p {
+	text-align: justify;
+	margin-bottom: 50px;
 }
 
 .page-template-raffle header:after {
@@ -2263,6 +2315,10 @@ section.selection .name h3 {
 
 .blog .blogs article:hover .entry-content {
 	display: block;
+}
+
+.blog .blogs article img {
+	width: 100%;
 }
 
 .blog .blogs article .entry-content {
