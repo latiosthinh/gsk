@@ -50,7 +50,21 @@
 
 		</div>
 
-		<h1 class="fd sz-250 txt-yl stroke text-title">GSK</h1>
+		<?php if ( is_front_page() ) : ?>
+			<h1 class="fd sz-250 txt-yl stroke text-title">GSK</h1>
+		<?php endif; ?>
+
+		<?php if ( is_page_template( 'templates/catalog.php' ) ) : ?>
+			<h1 class="fd sz-110 txt-yl stroke text-title">CATALOG</h1>
+		<?php endif; ?>
+
+		<?php if ( is_home() ) : ?>
+			<h1 class="fd sz-110 txt-yl stroke text-title">STORY</h1>
+		<?php endif; ?>
+
+		<?php if ( is_shop() || is_product() ) : ?>
+			<h1 class="fd sz-130 txt-yl stroke text-title">SHOP</h1>
+		<?php endif; ?>
 
 		<img class="header-vector" src="<?php echo IMG . '/header-vector.png' ?>">
 

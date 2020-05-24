@@ -1,4 +1,15 @@
 .post-type-archive-product {
+    .site-nav, header:after {
+        background: $orange;
+    }
+
+    .raffle-countdown:after {
+        background: rgba( $orange, 0.8 );
+    }
+
+    .text-title {
+        color: $orange;
+    }
 
     .page-title {
         text-align: center;
@@ -175,5 +186,11 @@
             line-height: 40px;
             color: #000000;
         }
+    }
+}
+
+.single-product {
+    .type-product {
+        margin: 60px 0;
     }
 }

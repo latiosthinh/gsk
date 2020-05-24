@@ -1,0 +1,30 @@
+.blog .page-title {
+	font-size: 48px;
+	text-align: center;
+	font-weight: 300;
+	margin: 60px 0;
+}
+
+.blog .blogs article {
+	position: relative;
+}
+
+.blog .blogs article .entry-content {
+	position: absolute;
+	background: #ffffff;
+	top: calc( 100% - 10px);
+	left: 0;
+	padding: 20px;
+	margin-top: 0;
+	z-index: 4;
+}
+
+.blog .blogs article h3 {
+	text-transform: uppercase;
+	font-size: 16px;
+	color: #000000;
+}
+
+.blog .blogs article .tags {
+	display: flex;
+}
