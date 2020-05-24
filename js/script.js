@@ -14,4 +14,6 @@
         $( this ).addClass( 'active' )
         $( $( this ).attr( 'href' ) ).addClass( 'active' )
     } )
+
+    $( '.woocommerce-ordering select' ).select2()
 } )( jQuery )

@@ -41,20 +41,20 @@ function your_prefix_register_meta_boxes( $meta_boxes ) {
 				'type' => 'group',
 				'name' => esc_html__( 'Color Group', 'gsk' ),
 				'fields' => array(
-					array (
-						'id' => $prefix . 'price',
-						'type' => 'text',
-						'name' => esc_html__( 'Price', 'gsk' ),
-					),
-					array (
-						'id' => $prefix . 'quantity',
-						'type' => 'text',
-						'name' => esc_html__( 'Quantity', 'gsk' ),
-					),
+					// array (
+					// 	'id' => $prefix . 'price',
+					// 	'type' => 'text',
+					// 	'name' => esc_html__( 'Price', 'gsk' ),
+					// ),
+					// array (
+					// 	'id' => $prefix . 'quantity',
+					// 	'type' => 'text',
+					// 	'name' => esc_html__( 'Quantity', 'gsk' ),
+					// ),
 					array (
 						'id' => $prefix . 'gallery',
 						'type' => 'image_advanced',
-						'name' => esc_html__( 'Gallery', 'gsk' ),
+						// 'name' => esc_html__( 'Gallery', 'gsk' ),
 						'max_file_uploads' => 4,
 						'max_status' => false,
 					),

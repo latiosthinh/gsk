@@ -1606,7 +1606,7 @@ footer .social ul li {
 	margin-right: 10px;
 }
 
-.selection {
+div.selection {
 	background: #ffa200;
 	display: flex;
 	justify-content: flex-end;
@@ -1614,13 +1614,13 @@ footer .social ul li {
 	margin-top: 50px;
 }
 
-.selection .name {
+div.selection .name {
 	position: absolute;
 	left: 70px;
 	top: 30%;
 }
 
-.selection .name h3 {
+div.selection .name h3 {
 	position: absolute;
 	font-family: "Dimitri", sans-serif;
 	color: #231f20;
@@ -1632,7 +1632,7 @@ footer .social ul li {
 }
 
 @supports (-webkit-text-stroke: 2px #ffa200) {
-	.selection .name h3 {
+	div.selection .name h3 {
 		-webkit-text-stroke: 2px #ffa200;
 	}
 }
@@ -1732,4 +1732,268 @@ footer .social ul li {
 	left: 50%;
 	transform: translateX(-50%) skew(30deg, 3deg);
 	z-index: -1;
+}
+
+.login h2 {
+	font-weight: 300;
+	text-align: center;
+	margin: 100px 0px 60px;
+	font-size: 48px;
+}
+
+.login .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login .rwmb-form input[type=text], .login .rwmb-form input[type=password] {
+	width: 100%;
+	background: none !important;
+	border: 0;
+	border-bottom: 1px solid #ffa200;
+	height: 50px;
+	line-height: 50px;
+	font-weight: 300;
+	padding: 0px 15px;
+}
+
+.login .rwmb-field {
+	position: relative;
+}
+
+.login .rwmb-field label {
+	font-weight: 300;
+}
+
+.login .rwmb-meta-box {
+	display: flex;
+	flex-direction: column;
+}
+
+.login .rwmb-button-wrapper {
+	order: 5;
+}
+
+.login .rwmb-button-wrapper button {
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	color: #000000;
+	background: #ffa200;
+	font-weight: 300;
+	text-transform: uppercase;
+	font-size: 14px;
+	height: 50px;
+	line-height: 50px;
+	width: 200px;
+	font-family: "iCiel", sans-serif;
+}
+
+.login .rwmb-button-wrapper button:hover {
+	background: #000000;
+	color: #ffa200;
+}
+
+.login .rwmb-custom_html-wrapper {
+	order: 4;
+	font-weight: 300;
+	margin: 40px 0px 30px;
+}
+
+.login .rwmb-custom_html-wrapper a {
+	color: #000000;
+	text-decoration: underline;
+}
+
+.login .notice {
+	font-weight: 300;
+	text-decoration: underline;
+}
+
+.login .register {
+	display: block;
+	text-align: center;
+	margin: 20px auto 50px;
+	height: 50px;
+	line-height: 50px;
+	width: 200px;
+	border: 0;
+	border-radius: 999px;
+	color: #000000;
+	background: #ffa200;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.login .register:hover {
+	background: #000000;
+	color: #ffa200;
+}
+
+.post-type-archive-product .page-title {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 48px;
+	font-weight: 300;
+	margin: 60px 0;
+}
+
+.post-type-archive-product .products li a {
+	position: relative;
+	background: #ffa200;
+	padding: 10px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	transition: .3s;
+}
+
+.post-type-archive-product .products li a:hover {
+	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.6);
+}
+
+.post-type-archive-product .products li img {
+	flex: 0 0 50%;
+	height: 100%;
+	margin: 0 0 0 !important;
+}
+
+.post-type-archive-product .products li .add_to_cart_button {
+	display: none;
+}
+
+.post-type-archive-product .products li .remaining {
+	position: absolute;
+	top: 12px;
+	left: calc( 50% + 20px);
+	font-size: 26px;
+	color: #000000;
+}
+
+.post-type-archive-product .products li .remaining span {
+	color: #ffffff;
+}
+
+.post-type-archive-product .products li .price {
+	position: absolute;
+	left: calc( 50% + 20px);
+	top: 55px;
+	font-size: 17px !important;
+	font-weight: 300 !important;
+	color: #ffffff !important;
+}
+
+.post-type-archive-product .products li .woocommerce-loop-product__title {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	left: calc( 50% + 20px);
+	padding: 7px !important;
+	text-transform: uppercase;
+	color: #ffffff;
+	font-size: 17px !important;
+	background: #000000;
+	display: block;
+	height: 90px;
+}
+
+.post-type-archive-product .widget-area section {
+	background: #ffa200;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+
+.post-type-archive-product .widget-area .widget-title {
+	padding: 5px 20px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	font-weight: 300;
+	font-size: 16px;
+}
+
+.post-type-archive-product .widget-area ul {
+	padding-left: 20px;
+}
+
+.post-type-archive-product .widget-area li {
+	display: block;
+	margin: 15px 0;
+}
+
+.post-type-archive-product .widget-area .count {
+	display: none;
+}
+
+.post-type-archive-product .widget-area .yit-wcan-parent-terms a {
+	display: flex;
+	align-items: center;
+	color: #ffffff;
+	font-weight: 300;
+}
+
+.post-type-archive-product .widget-area .yit-wcan-parent-terms a:before {
+	width: 20px;
+	height: 20px;
+	background-color: #ffffff;
+	background-size: 0 0;
+}
+
+.post-type-archive-product .widget-area .yit-wcan-parent-terms.chosen a:before {
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	background-position: bottom center;
+	background-size: 20px 40px;
+}
+
+.post-type-archive-product .woocommerce-ordering {
+	margin: 15px 0px 100px;
+	width: 100%;
+}
+
+.post-type-archive-product .woocommerce-ordering span {
+	width: 100% !important;
+	height: 40px !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+}
+
+.post-type-archive-product .woocommerce-ordering .select2-container--default .select2-selection--single .select2-selection__arrow b {
+	right: 15px;
+	left: unset;
+	border-color: #000 transparent transparent transparent;
+}
+
+.post-type-archive-product .woocommerce-ordering .select2-container--default .select2-selection--single {
+	background: #d9d9d9;
+}
+
+.post-type-archive-product .woocommerce-ordering .select2-results__option,
+.post-type-archive-product .woocommerce-ordering .select2-container--default .select2-selection--single .select2-selection__rendered {
+	font-size: 16px !important;
+	font-weight: 300 !important;
+	padding-left: 15px !important;
+	height: 40px !important;
+	line-height: 40px !important;
+	color: #000000 !important;
+}
+
+.post-type-archive-product .woocommerce-ordering .select2-container--default .select2-results__option[aria-selected=true], .post-type-archive-product .woocommerce-ordering .select2-container--default .select2-results__option[data-selected=true] {
+	font-size: 16px;
+	font-weight: 300;
+	padding-left: 15px;
+	height: 40px;
+	line-height: 40px;
+	color: #000000;
+}
+
+.post-type-archive-product .woocommerce-ordering .select2-results__option[aria-selected], .post-type-archive-product .woocommerce-ordering .select2-results__option[data-selected] {
+	font-size: 16px;
+	font-weight: 300;
+	padding-left: 15px;
+	height: 40px;
+	line-height: 40px;
+	color: #000000;
 }

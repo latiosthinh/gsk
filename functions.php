@@ -78,8 +78,20 @@ add_action( 'after_setup_theme', 'gsk_setup' );
 function gsk_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'gsk' ),
+			'name'          => esc_html__( 'Side Filter', 'gsk' ),
 			'id'            => 'sidebar-1',
+			'description'   => esc_html__( 'Add widgets here.', 'gsk' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Top Control', 'gsk' ),
+			'id'            => 'sidebar-top',
 			'description'   => esc_html__( 'Add widgets here.', 'gsk' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
@@ -94,11 +106,14 @@ add_action( 'widgets_init', 'gsk_widgets_init' );
  * Enqueue scripts and styles.
  */
 function gsk_scripts() {
+	wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css', [], _S_VERSION );
+
 	wp_enqueue_style( 'gsk-style', get_stylesheet_uri(), [], _S_VERSION );
 
 
 	wp_enqueue_script( 'gsk-navigation', JS. '/navigation.js', [], _S_VERSION, true );
-	wp_enqueue_script( 'gsk-skip-link-focus-fix', JS . '/skip-link-focus-fix.js', [], _S_VERSION, true );
+	wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', [], _S_VERSION, true );
+	wp_enqueue_script( 'gsk-skip-link-focus-fix', JS . '/skip-link-focus-fix.js', ['jquery'], _S_VERSION, true );
 	wp_enqueue_script( 'gsk-script', JS . '/script.js', ['jquery'], _S_VERSION, true );
 
 
@@ -126,9 +141,31 @@ require get_template_directory() . '/inc/taxonomy.php';
 
 require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/template-hooks.php';
 
 
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+function gsk_add_woocommerce_support() {
+    add_theme_support( 'woocommerce', array(
+        'thumbnail_image_width' => 150,
+        'single_image_width'    => 300,
+
+        'product_grid'          => array(
+            'default_rows'    => 5,
+            'min_rows'        => 2,
+            'max_rows'        => 5,
+            'default_columns' => 2,
+            'min_columns'     => 2,
+            'max_columns'     => 2,
+        ),
+	) );
+	
+	add_theme_support( 'wc-product-gallery-zoom' );
+	add_theme_support( 'wc-product-gallery-lightbox' );
+	add_theme_support( 'wc-product-gallery-slider' );
+}
+
+add_action( 'after_setup_theme', 'gsk_add_woocommerce_support' );

@@ -1,0 +1,16 @@
+.login h2 {
+	font-weight: 300;
+	text-align: center;
+	margin: 100px 0px 60px;
+	font-size: 48px;
+}
+
+.login .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login .rwmb-form input[type=text], .login .rwmb-form input[type=password] {
+	width: 100%;
+}

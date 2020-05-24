@@ -62,7 +62,7 @@
 				'meta_query' => [
 					[
 						'key'   => 'gskon_raffle',
-						'value' => 'true',
+						'value' => '1',
 					],
 				],
 			];
