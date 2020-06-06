@@ -8,7 +8,7 @@
 
     .blogs {
         margin-bottom: 100px;
-        
+
         article {
             position: relative;
             transition: .3s;
@@ -19,6 +19,10 @@
                 .entry-content {
                     display: block;
                 }
+            }
+
+            img {
+                width: 100%;
             }
 
             .entry-content {

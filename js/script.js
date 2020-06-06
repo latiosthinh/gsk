@@ -23,4 +23,11 @@
         prevArrow: '<a class="slick-prev"><img src="' + php_data.img_dir + '/prev.png" /></a>',
         nextArrow: '<a class="slick-next"><img src="' + php_data.img_dir + '/next.png" /></a>',
     })
+
+    $( '.blog-slider' ).slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        prevArrow: '<a class="slick-prev"><img src="' + php_data.img_dir + '/prev.png" /></a>',
+        nextArrow: '<a class="slick-next"><img src="' + php_data.img_dir + '/next.png" /></a>',
+    })
 } )( jQuery )
