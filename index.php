@@ -11,12 +11,12 @@
  *
  * @package gsk
  */
+
 get_header();
 ?>
 
 <div class="container">
     <div class="top-control">
-
         <h2 class="page-title">BLOG & ARTICLES</h2>
     </div>
 
