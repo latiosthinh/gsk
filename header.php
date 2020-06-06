@@ -100,7 +100,6 @@
 		</div>
 		<!-- Raffle end -->
 
-		<a class="btn bg-yl ttu fw-300 smooth see-more" href="<?php echo home_url( '/raffle-detail.php' ); ?>">See more</a>
-
+		<a class="btn bg-yl ttu fw-300 smooth see-more" href="<?php echo get_url_by_template( 'raffle-detail.php' ) ?>">See more</a>
 
 	</header><!-- #masthead -->
