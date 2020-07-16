@@ -7,7 +7,7 @@ get_header();
 
 <div class="container" style="margin:60px auto">
     <div class="row" style="justify-content: center;">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <img src="<?php echo IMG . '/about.png' ?>">
         </div>
     </div>

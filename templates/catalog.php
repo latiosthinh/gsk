@@ -26,9 +26,9 @@ get_header();
                 $products->the_post();
         ?>
                 <div class="col-md-3">
-                    <div class="item">
-                        <?php the_post_thumbnail( 'full' ); ?>
-                    </div>
+                    <a class="item" data-fancybox="gallery" href="<?php the_post_thumbnail_url( 'full' ) ?>">
+                        <?php the_post_thumbnail( 'thumb-385' ); ?>
+                    </a>
                 </div>
         <?php
             endwhile;

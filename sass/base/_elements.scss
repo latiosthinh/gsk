@@ -16,3 +16,35 @@ ol {
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3;
 }
+
+.countdown {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    line-height: 20px;
+
+    span {
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+        align-items: center;
+    }
+
+    i {
+        font-size: 6px;
+        font-style: normal;
+    }
+}
+
+.raffle-countdown {
+    .countdown {
+        span {
+            font-size: 40px;
+        }
+
+        i {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    }
+}

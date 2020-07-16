@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 
-header {
+.site-header {
     position: relative;
     max-height: 700px;
     overflow: hidden;
@@ -152,11 +152,13 @@ header {
     position: absolute;
     top: 0;
     left: 345px;
+    right: 0;
     height: 100%;
     z-index: 5;
 
     img {
         height: 85%;
+        width: 100%;
     }
 
     h2 {

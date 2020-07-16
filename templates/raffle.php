@@ -11,8 +11,16 @@ get_header();
 
     <h4 class="ttu fd stroke-2 txt-yl">raffle flow</h4>
 
-    <div class="col-md-8">
-        <img src="<?php echo IMG . '/raffle-flow.png' ?>">
+    <div class="col-md-6">
+        <?php
+        $images = rwmb_meta( 'raffle-flow', array( 'size' => 'thumbnail' ) );
+        
+        foreach ( $images as $img ) :
+        ?>
+
+        <img src="<?= $img['full_url'] ?>" >
+
+        <?php endforeach; ?>
     </div>
 </section>
 

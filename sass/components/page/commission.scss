@@ -57,6 +57,7 @@ section.selection {
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-bottom: 50px;
 
             a {
                 display: inline-block;
@@ -67,11 +68,11 @@ section.selection {
             }
         }
     }
-}
 
-.gang {
-    padding: 100px 0px 60px;
-    background: url( images/header-vector.png ) #fff center center /contain no-repeat;
+    &:nth-child(2n+1) {
+        padding: 100px 0px 60px;
+        background: url( images/header-vector.png ) #fff center center /contain no-repeat;
+    }
 }
 
 .submission {

@@ -37,6 +37,7 @@ function gsk_pingback_header() {
 add_action( 'wp_head', 'gsk_pingback_header' );
 
 function get_url_by_template( $template ){
+	wp_reset_query();
 	$url = null;
 	
     $pages = query_posts( array(
@@ -50,4 +51,18 @@ function get_url_by_template( $template ){
 	}
 	
     return $url;
+}
+
+function get_first_image( $id ) {
+	$group_product = rwmb_meta( 'gskgroup_product', $id );
+	$i = 0;
+
+	foreach( $group_product as $group ) {
+?>
+		<a class="product-gallery__link" data-href="#product-gallery-<?= $i ?>">
+			<?php echo wp_get_attachment_image( $group['gskgallery'][0] ); ?>
+		</a>
+<?php
+		$i++;
+	}
 }

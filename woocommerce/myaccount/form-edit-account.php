@@ -16,8 +16,9 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+?>
 
-do_action( 'woocommerce_before_edit_account_form' ); ?>
+<?php do_action( 'woocommerce_before_edit_account_form' ); ?>
 
 <form class="woocommerce-EditAccountForm edit-account" action="" method="post" <?php do_action( 'woocommerce_edit_account_form_tag' ); ?> >
 
@@ -40,8 +41,22 @@ do_action( 'woocommerce_before_edit_account_form' ); ?>
 	<div class="clear"></div>
 
 	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-		<label for="account_email"><?php esc_html_e( 'Email address', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
+		<label for="account_email"><span class="special">Paypal</span><?php esc_html_e( ' email address', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
 		<input type="email" class="woocommerce-Input woocommerce-Input--email input-text" name="account_email" id="account_email" autocomplete="email" value="<?php echo esc_attr( $user->user_email ); ?>" />
+		<i>This email will be used to enroll <a href="<?= home_url( '/raffle' ) ?>" class="txt-yl">Raffle</a></i>
+	</p>
+	<div class="clear"></div>
+
+	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+		<label for="communitiy_name"><?php esc_html_e( 'Communities', 'woocommerce' ); ?></label>
+		<?php
+		$communities = rwmb_meta( 'communities', array( 'object_type' => 'user' ), $user->ID );
+		
+		foreach ( $communities as $com ) :
+		?>
+		<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="communitiy_name" id="communitiy_name" value="<?php echo esc_attr( $com[ 'community_name' ] ); ?>" />
+		<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="communitiy_id" id="communitiy_id" value="<?php echo esc_attr( $com[ 'community_id' ] ); ?>" />
+		<?php endforeach; ?>
 	</p>
 
 	<fieldset>

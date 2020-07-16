@@ -69,6 +69,7 @@ if ( ! function_exists( 'gsk_setup' ) ) :
 			]
 		);
 
+		add_image_size( 'thumb-500', 470, 470, true );
 		add_image_size( 'thumb-385', 385, 385, true );
 		add_image_size( 'thumb-315', 315, 170, true );
 	}
@@ -117,19 +118,31 @@ function gsk_scripts() {
 	wp_enqueue_script( 'slick', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js', ['jquery'], _S_VERSION, true );
 	wp_enqueue_script( 'gsk-skip-link-focus-fix', JS . '/skip-link-focus-fix.js', ['jquery'], _S_VERSION, true );
 	wp_enqueue_script( 'gsk-script', JS . '/script.js', ['jquery'], _S_VERSION, true );
+	wp_enqueue_script( 'gsk-countdown', JS . '/countdown.js', ['jquery'], _S_VERSION, true );
 
-
+	if ( is_page( 'catalog' ) ) {
+		wp_enqueue_style( 'fancybox', 'https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css', [], _S_VERSION );
+		wp_enqueue_script( 'fancybox', 'https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', ['jquery'], _S_VERSION, true );
+	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	$curUser = wp_get_current_user();
+	$curUserData = get_user_meta( $curUser->ID );
+
+	$email = get_userdata( $curUser->ID )->user_email;
+	$ip = $curUserData[ 'gsk_ip_address' ][ 0 ];
 
 	$data = [
 		'home_url'  => home_url(),
 		'ajax_url'  => admin_url( 'admin-ajax.php' ),
 		'nonce'     => wp_create_nonce( 'ajax_nonce' ),
 		'js_dir'    => JS,
-		'img_dir'	=> IMG
+		'img_dir'	=> IMG,
+		'ip'        => $ip,
+		'email'		=> $email,
 	];
 
 	wp_localize_script( 'gsk-script', 'php_data', $data );
@@ -139,6 +152,7 @@ add_action( 'wp_enqueue_scripts', 'gsk_scripts' );
 
 function gsk_admin_script() {
 	wp_enqueue_style( 'gsk-admin', ADMIN . '/admin.css', [], _S_VERSION );
+	wp_enqueue_script( 'gsk-admin', ADMIN . '/admin.js', [ 'jquery' ], _S_VERSION );
 }
 
 add_action( 'admin_enqueue_scripts', 'gsk_admin_script', 10, 1 );
@@ -161,18 +175,18 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 function gsk_add_woocommerce_support() {
-    add_theme_support( 'woocommerce', array(
-        'thumbnail_image_width' => 150,
-        'single_image_width'    => 300,
+	add_theme_support( 'woocommerce', array(
+		'thumbnail_image_width' => 150,
+		'single_image_width'    => 300,
 
-        'product_grid'          => array(
-            'default_rows'    => 5,
-            'min_rows'        => 2,
-            'max_rows'        => 5,
-            'default_columns' => 2,
-            'min_columns'     => 2,
-            'max_columns'     => 2,
-        ),
+		'product_grid'          => array(
+			'default_rows'    => 5,
+			'min_rows'        => 2,
+			'max_rows'        => 5,
+			'default_columns' => 2,
+			'min_columns'     => 2,
+			'max_columns'     => 2,
+		),
 	) );
 	
 	add_theme_support( 'wc-product-gallery-zoom' );
@@ -195,3 +209,99 @@ function gsk_get_user_ip( $user_id ) {
 
 	update_user_meta( $user_id, 'gsk_ip_address', $ip );
 }
+
+add_filter( 'rwmb_profile_after_save_user', function() {
+	wp_redirect( home_url( '/my-account' ) );
+	die;
+}, 10, 2 );
+
+// user enrolled
+function submit_enroll() {
+	$data_ajax = (array) $_POST;
+	
+	$curUser = wp_get_current_user();
+	
+	update_user_meta( $curUser->ID, 'enroll', '1' );
+	
+	$response = [
+		'status' => 'success',
+		'data' => $data_ajax
+	];
+
+	header('Content-type:application/json;charset=utf-8');
+	echo json_encode( $response );
+	die;
+}
+
+add_action('wp_ajax_enroll', 'submit_enroll');
+add_action('wp_ajax_nopriv_enroll', 'submit_enroll');
+
+
+// ban user
+function submit_banned() {
+	$data_ajax = (array) $_POST;
+	
+	$user_id = $data_ajax['id'];
+	
+	update_user_meta( $user_id, 'banned', $data_ajax['banned'] );
+	
+	$response = [
+		'status' => 'success',
+		'data' => $data_ajax
+	];
+
+	header('Content-type:application/json;charset=utf-8');
+	echo json_encode( $response );
+	die;
+}
+
+add_action('wp_ajax_banned', 'submit_banned');
+add_action('wp_ajax_nopriv_banned', 'submit_banned');
+
+
+// create post raffle
+function submit_raffle() {
+	$data_ajax = (array) $_POST;
+	
+	wp_insert_post( [
+		'post_type'    => 'raffles',
+		'post_title'   => $data_ajax['title'],
+		'post_content' => $data_ajax['html'],
+	] );
+	
+	$response = [
+		'status' => 'success',
+		'data' => $data_ajax
+	];
+
+	header('Content-type:application/json;charset=utf-8');
+	echo json_encode( $response );
+	die;
+}
+
+add_action('wp_ajax_add_raffle', 'submit_raffle');
+add_action('wp_ajax_nopriv_add_raffle', 'submit_raffle');
+
+function gsk_registration_redirect() {
+	return home_url('/my-account/edit-account');
+}
+add_action('woocommerce_registration_redirect', 'gsk_registration_redirect', 2);
+
+
+add_filter( 'facetwp_facet_html', function( $html, $args ) {
+
+	if ( 'checkboxes' == $args['facet']['type']) {
+
+		$pattern = '/<div class="facetwp-checkbox[^"]*" data-value="[^"]*">([^<]*) <span/';
+		preg_match_all( $pattern, $html, $matches );
+
+		if ( !empty($matches[1]) ) {
+			foreach ( $matches[1] AS $label ) {
+				$html = str_replace( '>' . $label . ' <span', '><span class="fwp_label">' . $label . '</span> <span', $html );
+			}
+		}
+	}
+
+	return $html;
+
+}, 10, 2);

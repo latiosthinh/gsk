@@ -32,8 +32,13 @@
 			</div>
 
 			<ul class="actions">
-				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( 'dashboard' ) ?>">Login</a></li>
-				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( 'cart' ) ?>">Cart (<?php echo "0" ?>)</a></li>
+				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( '/my-account' ) ?>">Account</a></li>
+
+				<?php
+				global $woocommerce;
+				$number = $woocommerce->cart->cart_contents_count;
+				?>
+				<li><a class="ttu sz-16 fw-300" href="<?php echo home_url( 'cart' ) ?>">Cart (<?php echo $number ?>)</a></li>
 			</ul>
 
 			<nav id="site-navigation" class="main-navigation container-fluid">
@@ -86,11 +91,13 @@
 			];
 
 			$raffle = new WP_Query($args);
+			$raffle_url = '';
 
 			if ( $raffle->have_posts() ) :
 				while ( $raffle->have_posts() ) : $raffle->the_post();
 
 					get_template_part( 'template-parts/raffle/content-raffle' );
+					$raffle_url = get_the_permalink();
 
 				endwhile;
 			endif;
@@ -100,7 +107,7 @@
 		</div>
 		<!-- Raffle end -->
 
-		<a class="btn bg-yl ttu fw-300 smooth see-more" href="<?php echo home_url( '/raffle-detail.php' ); ?>">See more</a>
+		<a class="btn bg-yl ttu fw-300 smooth see-more" href="<?= $raffle_url; ?>">See more</a>
 
 
 	</header><!-- #masthead -->

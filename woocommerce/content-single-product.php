@@ -30,35 +30,108 @@ if ( post_password_required() ) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
+
+$curUser = wp_get_current_user();
+$is_enrolled = get_user_meta( $curUser->ID, 'enroll' )[0];
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-5">
+			<div class="product-gallery">
+			<?php
+			$group_product = rwmb_meta( 'gskgroup_product' );
+			$i = 0;
 
-	<?php
-	/**
-	 * Hook: woocommerce_before_single_product_summary.
-	 *
-	 * @hooked woocommerce_show_product_sale_flash - 10
-	 * @hooked woocommerce_show_product_images - 20
-	 */
-	do_action( 'woocommerce_before_single_product_summary' );
-	?>
+			foreach( $group_product as $group ) {
+			?>
+				<div class="product-gallery__panel" id="product-gallery-<?= $i ?>">
+					<div class="product-gallery__flash">
+						<?php
+							foreach ( $group['gskgallery'] as $image ) {
+								echo wp_get_attachment_image( $image, 'thumb-500' );
+							}
+						?>
+					</div>
 
-	<div class="summary entry-summary">
-		<?php
-		/**
-		 * Hook: woocommerce_single_product_summary.
-		 *
-		 * @hooked woocommerce_template_single_title - 5
-		 * @hooked woocommerce_template_single_rating - 10
-		 * @hooked woocommerce_template_single_price - 10
-		 * @hooked woocommerce_template_single_excerpt - 20
-		 * @hooked woocommerce_template_single_add_to_cart - 30
-		 * @hooked woocommerce_template_single_meta - 40
-		 * @hooked woocommerce_template_single_sharing - 50
-		 * @hooked WC_Structured_Data::generate_product_data() - 60
-		 */
-		do_action( 'woocommerce_single_product_summary' );
-		?>
+					<div class="product-gallery__nav">
+						<?php
+							foreach ( $group['gskgallery'] as $image ) {
+								echo wp_get_attachment_image( $image );
+							}
+						?>
+					</div>
+				</div>
+			<?php
+				$i++;
+			} 
+			?>
+			</div>
+		</div>
+
+		<div class="col-md-5">
+			<div class="summary entry-summary">
+				<?php
+				woocommerce_template_single_title();
+				// woocommerce_template_single_meta();
+				the_content();
+				?>
+
+				<div class="actions">
+					<h4>AVAILABLE ITEMS</h4>
+					<div class="actions-slider">
+						<div><?php get_first_image( get_the_id() ); ?></div>
+						<?php woocommerce_template_single_price(); ?>
+					</div>
+					
+					<div class="actions-login-buy">
+						<?php
+						// woocommerce_template_single_excerpt();
+
+						if ( is_user_logged_in() && ! rwmb_meta( 'gskon_raffle' ) ) :
+							woocommerce_template_single_add_to_cart();
+						elseif ( ! is_user_logged_in() && ! rwmb_meta( 'gskon_raffle' ) ) :
+						?>
+								<a class="ttu sz-16 fw-300 login-request no-raffle" href="<?php echo home_url( 'dashboard' ) ?>">Login Request</a>
+						<?php
+						elseif ( is_user_logged_in() && rwmb_meta( 'gskon_raffle' ) ) :
+						?>
+							<p class="countdown"></p>
+							<?php if ( $is_enrolled == '1' ) : ?>
+								<a id="enroll-btn" class="ttu sz-16 fw-300 login-request enrolled">Enrolled</a>
+							<?php else: ?>
+								<a id="enroll-btn" class="ttu sz-16 fw-300 login-request time-out">Enroll</a>
+							<?php endif; ?>
+						<?php
+						elseif ( ! is_user_logged_in() && rwmb_meta( 'gskon_raffle' ) ) :
+						?>
+							<p class="countdown"></p>
+							<a class="ttu sz-16 fw-300 login-request" href="<?php echo home_url( 'dashboard' ) ?>">Login Request</a>
+						<?php
+						endif;
+						?>
+					</div>
+
+					<?php woocommerce_template_single_sharing(); ?>
+
+					<p class="author"><?= rwmb_meta( 'gskauthor' ); ?></p>
+
+					<?php if ( rwmb_meta( 'gskshipping_date' ) ) : ?>
+					<p class="shipping-date">Expected shipping date is <?= rwmb_meta( 'gskshipping_date' ) ?></p>
+					<?php  endif; ?>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<?php if ( rwmb_meta( 'gskon_raffle' ) ) : ?>
+				<img class="product-desc__img" src="<?= IMG . '/wish.png' ?>">
+				<img class="product-desc__img" src="<?= IMG . '/rule.png' ?>">
+			<?php endif; ?>
+
+			<?php woocommerce_output_related_products(); ?>
+		</div>
 	</div>
 
 	<?php
@@ -69,7 +142,7 @@ if ( post_password_required() ) {
 	 * @hooked woocommerce_upsell_display - 15
 	 * @hooked woocommerce_output_related_products - 20
 	 */
-	do_action( 'woocommerce_after_single_product_summary' );
+	// do_action( 'woocommerce_after_single_product_summary' );
 	?>
 </div>
 

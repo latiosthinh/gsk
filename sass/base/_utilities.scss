@@ -1,3 +1,7 @@
+.pad-0 {
+    padding: 0;
+}
+
 // Font family
 .fi {
     font-family: $f1; // iCiel
@@ -50,6 +54,10 @@
     font-size: 250px;
 }
 
+.txt-center {
+    text-align: center;
+}
+
 
 // Color
 .txt-yl {
@@ -76,6 +84,10 @@
     }
 }
 
+.flex-center {
+    justify-content: center;
+}
+
 .btn {
     padding: 14px 35px 13px;
     border-radius: 999px;
@@ -88,5 +100,21 @@
             background: #000000;
             color: $yellow;
         }
+    }
+}
+
+.special {
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 110%;
+        height: 100%;
+        background: $yellow;
+        top: 0;
+        left: -5%;
+        z-index: -1;
     }
 }

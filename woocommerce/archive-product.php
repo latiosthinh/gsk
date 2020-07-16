@@ -35,7 +35,16 @@ get_header( 'shop' );
 		<div class="col-md-3">
 			<?php get_sidebar( 'sidebar-1' ); ?>
 
+			<div class="gsk-filter-checkbox">
+			<?php
+			echo do_shortcode( '[facetwp facet="on_raffle"]' );
+			echo do_shortcode( '[facetwp facet="in_stock"]' );
+			?>
+			</div>
+
 			<?php woocommerce_catalog_ordering(); ?>
+
+			<?php echo do_shortcode( '[facetwp facet="categories"]' ); ?>
 
 			<?php get_sidebar( 'sidebar-top' ); ?>
 		</div>
