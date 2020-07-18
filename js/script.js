@@ -183,17 +183,50 @@
 		return result;
 	}
 
-	$( '#roll-btn' ).on( 'click', function() {
-		let items = getRandom( $( '.user-item.can-roll' ), $( '#roll-number' ).val() );
+	$( '.roll-btn' ).on( 'click', function() {
+		let rollItem = $( this ).attr( 'data-item' )
+		let items = getRandom( $( `.user-item.can-roll[data-user-items*=${rollItem}]` ), $( '#roll-number' ).val() );
+		let id = [];
+		$( items ).each( function( i, e ) {
+			id.push( $( e ).attr( 'data-user-id' ) )
+		} )
+		console.log(id)
 
-		$( '.roll-result' ).html( items )
+		setTimeout(() => {
+			let _data = {
+				"raffle_id"  : $( this ).attr( 'data-id' ),
+				"raffle_item": $( this ).attr( 'data-item' ),
+				"user_ids"   : id,
+				"_ajax_nonce": php_data.nonce,
+				"action"     : "get_raffle_winner"
+			};
+			$.ajax({
+				url: php_data.ajax_url,
+				type: 'POST',
+				dataType: 'json',
+				data: _data,
+				success:function( res ){
+					$( '.roll-result' ).html( res.data )
+				},
+				error: function( err ){
+					console.log( err );
+				} 
+			})
+		}, 0);
 	} )
 
 	$( '#save-result-btn' ).on( 'click', function() {
-		var $this = $( this );
-		var _data = {
-			"title"      : $( '.site-raffle h2' ).text(),
-			"html"       : $( '.table-roll-result' ).html(),
+		let $this = $( this );
+		let user_ids = [];
+
+		$( '.item-to-save' ).each( function( i, e ) {
+			user_ids.push( $( e ).text() )
+		} )
+
+		let _data = {
+			"user_id"    : user_ids,
+			"raffle_id"  : $( '.item-to-save' ).attr( 'data-raffle-id' ),
+			"raffle_item": $( '.item-to-save' ).attr( 'data-raffle-item' ),
 			"_ajax_nonce": php_data.nonce,
 			"action"     : "add_raffle"
 		};
@@ -202,11 +235,10 @@
 			type: 'POST',
 			dataType: 'json',
 			data: _data,
-			success:function( res ){
+			success:function( res ) {
 				console.log(res);
-				$this.html( 'SAVED' )
 			},
-			error: function( err ){
+			error: function( err ) {
 				console.log( err );
 			} 
 		})
@@ -226,9 +258,9 @@
 		$( '.facetwp-template' ).animate({ opacity: 1 }, 10);
 		
 		$('.facetwp-facet').each(function() {
-			var $facet = $(this);
-			var facet_name = $facet.attr('data-name');
-			var facet_label = FWP.settings.labels[facet_name];
+			let $facet = $(this);
+			let facet_name = $facet.attr('data-name');
+			let facet_label = FWP.settings.labels[facet_name];
 
 			if ($facet.closest('.facet-wrap').length < 1 && $facet.closest('.facetwp-flyout').length < 1) {
 				$facet.wrap('<div class="facet-wrap"></div>');

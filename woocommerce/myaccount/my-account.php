@@ -23,6 +23,8 @@ defined( 'ABSPATH' ) || exit;
  * @since 2.6.0
  */
 if ( current_user_can( 'manage_options' ) ) {
+
+global $raffle_id;
 ?>
 	<table class="list-user">
 		<thead>
@@ -31,7 +33,7 @@ if ( current_user_can( 'manage_options' ) ) {
 				<td width="10%">NAME</td>
 				<td width="20%">EMAIL</td>
 				<td width="15%">PHONE</td>
-				<td width="30%">ADDRESS</td>
+				<td width="30%">ITEMS</td>
 				<td width="13%">IP</td>
 				<td width="7%">ACTION</td>
 			</tr>
@@ -42,7 +44,7 @@ if ( current_user_can( 'manage_options' ) ) {
 
 			$args = [
 				'meta_key'     => 'enroll',
-				'meta_value'   => '1',
+				'meta_value'   => $raffle_id,
 			];
 
 			$enrolled_user = get_users( $args );
@@ -51,16 +53,24 @@ if ( current_user_can( 'manage_options' ) ) {
 			foreach ( $enrolled_user as $user ) {
 				$ip       = get_user_meta( $user->ID, 'gsk_ip_address' )[0];
 				$banned   = get_user_meta( $user->ID, 'banned' )[0];
-				$address  = get_user_meta( $user->ID, 'billing_address_1', true );
+				$items    = get_user_meta( $user->ID, 'enroll_items', true );
 				$phone    = get_user_meta( $user->ID, 'billing_phone', true );
 				$can_roll = '1' !== $banned ? 'can-roll' : '';
 			?>
-				<tr class="user-item <?= $can_roll ?>">
+				<tr>
 					<td><?= $user->ID ?></td>
-					<td><?= $user->display_name ?></td>
+					<td>
+						<a href="<?php echo home_url(), '/wp-admin/user-edit.php?user_id=', $user->ID, '&wp_http_referer=%2Fwp-admin%2Fusers.php'; ?>" target="_blank">
+							<?= $user->display_name ?>
+						</a>
+					</td>
 					<td><?= $user->user_email ?></td>
 					<td><?= $phone ?></td>
-					<td><?= $address ?></td>
+					<td class="user-item <?= $can_roll ?>"
+						data-user-id="<?= $user->ID ?>"
+						data-user-items="<?= $items ?>">
+						<?= $items ?>
+					</td>
 					<td><?= $ip ?></td>
 					<?php if ( $banned === '1' ) : ?>
 						<td><button class="enrolled-ban banned" data-id="<?= $user->ID ?>" data-b="0">UN-BAN</button></td>
@@ -74,7 +84,14 @@ if ( current_user_can( 'manage_options' ) ) {
 
 	<section class="roll-area">
 		<div class="roll-area__actions">
-			<button id="roll-btn">ROLL</button>
+
+			<?php
+			$group_items = rwmb_meta( 'gskgroup_product', null, $raffle_id );
+
+			foreach ( $group_items as $item ) :
+			?>
+				<button class="roll-btn" data-id="<?= $raffle_id ?>" data-item="<?= $item[ 'gskgallery_name' ] ?>">ROLL <?= $item[ 'gskgallery_name' ] ?></button>
+			<?php endforeach; ?>
 
 			<label>Numbers
 				<input id="roll-number" type="number" value="2">
@@ -91,7 +108,7 @@ if ( current_user_can( 'manage_options' ) ) {
 						<td width="10%">NAME</td>
 						<td width="20%">EMAIL</td>
 						<td width="15%">PHONE</td>
-						<td width="30%">ADDRESS</td>
+						<td width="30%">ITEMS</td>
 						<td width="13%">IP</td>
 						<td width="7%">ACTION</td>
 					</tr>

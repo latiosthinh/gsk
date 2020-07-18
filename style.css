@@ -2245,14 +2245,16 @@ section.selection .name h3 {
 	color: #ffffff;
 }
 
-#roll-btn {
+.roll-btn {
 	background: #ff5400;
 	color: #ffffff;
+	cursor: pointer;
 }
 
 #save-result-btn {
 	background: #15bf35;
 	color: #000000;
+	cursor: pointer;
 }
 
 .woocommerce-account .woocommerce-MyAccount-navigation {

@@ -98,11 +98,14 @@
 			$raffle = new WP_Query($args);
 			$raffle_url = '';
 
+			global $raffle_id;
+
 			if ( $raffle->have_posts() ) :
 				while ( $raffle->have_posts() ) : $raffle->the_post();
 
 						get_template_part( 'template-parts/raffle/content-raffle' );
 						$raffle_url = get_the_permalink();
+						$raffle_id = get_the_ID();
 					
 				endwhile;
 			else :

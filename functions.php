@@ -232,12 +232,14 @@ function submit_enroll() {
 	$data_ajax = (array) $_POST;
 	
 	$curUser = wp_get_current_user();
+	$chosen_items = '';
 
 	foreach ($data_ajax['chosen'] as $item ) {
 		$chosen_items .= $item . ',';	
 	}
 
-	update_user_meta( $curUser->ID, 'enroll', $data_ajax['id'] . ' - ' . $chosen_items );
+	update_user_meta( $curUser->ID, 'enroll', $data_ajax['id'] );
+	update_user_meta( $curUser->ID, 'enroll_items',$chosen_items );
 
 	$response = [
 		'status' => 'success',
@@ -251,6 +253,57 @@ function submit_enroll() {
 
 add_action('wp_ajax_enroll', 'submit_enroll');
 add_action('wp_ajax_nopriv_enroll', 'submit_enroll');
+
+
+// get winner
+function get_user_raffle() {
+	$data_ajax = (array) $_POST;
+	$html = '';
+
+	foreach ( $data_ajax['user_ids'] as $id ) :
+		$ip       = get_user_meta( $id, 'gsk_ip_address' )[0];
+		$banned   = get_user_meta( $id, 'banned' )[0];
+		$items    = get_user_meta( $id, 'enroll_items', true );
+		$phone    = get_user_meta( $id, 'billing_phone', true );
+		$can_roll = '1' !== $banned ? 'can-roll' : '';
+		$user = get_userdata( $id );
+		$home_url = home_url();
+
+		$html .= "
+			<tr>
+				<td class='item-to-save'
+					data-raffle-id='{$data_ajax['raffle_id']}'
+					data-raffle-item='{$data_ajax['raffle_item']}'
+				>{$id}</td>
+				<td>
+					<a href='{$home_url}/wp-admin/user-edit.php?user_id={$id}&wp_http_referer=%2Fwp-admin%2Fusers.php' target='_blank'>
+					{$user->display_name}
+					</a>
+				</td>
+				<td>{$user->user_email}</td>
+				<td>{$phone}</td>
+				<td class='user-item {$can_roll}'
+					data-user-id='{$id}'
+					data-user-items='{$items}'>
+					{$items}
+				</td>
+				<td>{$ip}</td>
+				<td><button class='enrolled-ban' data-id='{$id}' data-b='1'>BAN</button></td>
+			</tr>";
+	endforeach;
+	
+	$response = [
+		'status' => 'success',
+		'data'   => $html
+	];
+
+	header('Content-type:application/json;charset=utf-8');
+	echo json_encode( $response );
+	die;
+}
+
+add_action('wp_ajax_get_raffle_winner', 'get_user_raffle');
+add_action('wp_ajax_nopriv_get_raffle_winner', 'get_user_raffle');
 
 
 // ban user
@@ -279,12 +332,11 @@ add_action('wp_ajax_nopriv_banned', 'submit_banned');
 function submit_raffle() {
 	$data_ajax = (array) $_POST;
 	
-	wp_insert_post( [
-		'post_type'    => 'raffles',
-		'post_title'   => $data_ajax['title'],
-		'post_content' => $data_ajax['html'],
-	] );
-	
+	foreach ( $data_ajax[ 'user_id' ] as $uid ) {
+		$default_data = get_user_meta( $uid, 'enroll_win', true ) . ' | ' . $data_ajax[ 'raffle_id' ] . '-' . $data_ajax[ 'raffle_item' ];
+		update_user_meta( $uid, 'enroll_win', $default_data );
+	}
+
 	$response = [
 		'status' => 'success',
 		'data' => $data_ajax

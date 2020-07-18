@@ -177,15 +177,17 @@
 	}
 }
 
-#roll-btn {
+.roll-btn {
 	background: $orange;
 	color: #ffffff;
+	cursor: pointer;
 
 }
 
 #save-result-btn {
 	background: $green;
 	color: #000000;
+	cursor: pointer;
 }
 
 .woocommerce-account {
