@@ -37,6 +37,17 @@ function your_prefix_register_meta_boxes( $meta_boxes ) {
 				'save_format' => 'Y-m-d H:i:s',
 			),
 			array (
+				'id'         => $prefix . 'raffle_end_time',
+				'type'       => 'datetime',
+				'name'       => esc_html__( 'Raffle End Time', 'gsk' ),
+				'timestamp'  => 1,
+				'js_options' => array(
+					'dateFormat'      => 'dd-mm-yy',
+					'showTimepicker'  => true,
+				),
+				'save_format' => 'Y-m-d H:i:s',
+			),
+			array (
 				'id'   => $prefix . 'shipping_date',
 				'type' => 'date',
 				'name' => esc_html__( 'Shipping Date', 'gsk' ),

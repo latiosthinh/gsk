@@ -100,6 +100,18 @@ function gsk_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer', 'gsk' ),
+			'id'            => 'sidebar-footer',
+			'description'   => esc_html__( 'Add widgets here.', 'gsk' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
 }
 add_action( 'widgets_init', 'gsk_widgets_init' );
 
@@ -220,12 +232,16 @@ function submit_enroll() {
 	$data_ajax = (array) $_POST;
 	
 	$curUser = wp_get_current_user();
-	
-	update_user_meta( $curUser->ID, 'enroll', '1' );
-	
+
+	foreach ($data_ajax['chosen'] as $item ) {
+		$chosen_items .= $item . ',';	
+	}
+
+	update_user_meta( $curUser->ID, 'enroll', $data_ajax['id'] . ' - ' . $chosen_items );
+
 	$response = [
 		'status' => 'success',
-		'data' => $data_ajax
+		'data'   => $data_ajax
 	];
 
 	header('Content-type:application/json;charset=utf-8');
@@ -281,6 +297,38 @@ function submit_raffle() {
 
 add_action('wp_ajax_add_raffle', 'submit_raffle');
 add_action('wp_ajax_nopriv_add_raffle', 'submit_raffle');
+
+// end raffle
+function end_raffle() {
+	$data_ajax = (array) $_POST;
+
+	$args = [
+		'post_type'  => 'product',
+		'p'          => $data_ajax[ 'post_id' ],
+	];
+
+	$raffle = new WP_Query($args);
+
+	if ( $raffle->have_posts() ) :
+		while ( $raffle->have_posts() ) : $raffle->the_post();
+			update_post_meta( get_the_ID(), 'gskon_raffle', '0' );
+		endwhile;
+	endif;
+	
+	wp_reset_postdata();
+	
+	$response = [
+		'status' => 'success',
+		'data'   => $data_ajax
+	];
+
+	header('Content-type:application/json;charset=utf-8');
+	echo json_encode( $response );
+	die;
+}
+
+add_action('wp_ajax_off_raffle', 'end_raffle');
+add_action('wp_ajax_nopriv_off_raffle', 'end_raffle');
 
 function gsk_registration_redirect() {
 	return home_url('/my-account/edit-account');

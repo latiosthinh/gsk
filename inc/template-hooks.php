@@ -4,7 +4,11 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 3
 
 function show_stock() {
 	global $product;
-	if ( $product->get_stock_quantity() ) { // if manage stock is enabled 
+	if ( rwmb_meta( 'gskon_raffle', null, get_the_ID() ) === '1' ) {
+		echo '<p class="remaining-raffle">Raffle</p>';
+		echo '<span class="posted_on">', date( 'F j, Y', rwmb_meta( 'gskraffle_time', null, get_the_ID() ) ), '</span>';
+	}
+	elseif ( $product->get_stock_quantity() ) { // if manage stock is enabled 
 		if ( number_format($product->get_stock_quantity(),0,'','') < 3 ) { // if stock is low
 			echo '<p class="remaining">Only ' . number_format($product->get_stock_quantity(),0,'','') . '</p>';
 		} else {
@@ -13,12 +17,6 @@ function show_stock() {
 	}
 }
 add_action( 'woocommerce_before_shop_loop_item_title', 'show_stock', 20 );
-
-function show_product_date() {
-	echo '<span class="posted_on">', get_the_date(), '</span>';
-}
-add_action( 'woocommerce_after_shop_loop_item_title', 'show_product_date', 20 );
-
 
 // edit account
 add_action( 'woocommerce_save_account_details', 'save_user_extra_info', 12, 1 );

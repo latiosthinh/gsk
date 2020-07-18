@@ -87,6 +87,11 @@
 						'key'   => 'gskon_raffle',
 						'value' => '1',
 					],
+					[
+						'key'     => 'gskraffle_end_time',
+						'value'   => date("Y-m-d H:i"),
+						'compare' => '<'
+					],
 				],
 			];
 
@@ -96,10 +101,35 @@
 			if ( $raffle->have_posts() ) :
 				while ( $raffle->have_posts() ) : $raffle->the_post();
 
-					get_template_part( 'template-parts/raffle/content-raffle' );
-					$raffle_url = get_the_permalink();
-
+						get_template_part( 'template-parts/raffle/content-raffle' );
+						$raffle_url = get_the_permalink();
+					
 				endwhile;
+			else :
+				$args = [
+					'post_type'      => 'product',
+					'posts_per_page' => 1,
+					'meta_query'     => [
+						[
+							'key'   => 'gskon_raffle',
+							'value' => '1',
+						],
+					],
+				];
+	
+				$raffle = new WP_Query($args);
+				$raffle_url = '';
+	
+				if ( $raffle->have_posts() ) :
+					while ( $raffle->have_posts() ) : $raffle->the_post();
+	
+							get_template_part( 'template-parts/raffle/content-raffle' );
+							$raffle_url = get_the_permalink();
+						
+					endwhile;
+				endif;
+				
+				wp_reset_postdata();
 			endif;
 			
 			wp_reset_postdata();

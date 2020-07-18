@@ -1,8 +1,5 @@
-footer {
-	background: url(images/bg-footer.png) right center/100% no-repeat;
-}
-
-footer .row {
+footer bg
+.row {
 	padding: 25px 350px 25px 0;
 	display: flex;
 	justify-content: space-between;

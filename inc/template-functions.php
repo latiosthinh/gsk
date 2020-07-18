@@ -59,8 +59,26 @@ function get_first_image( $id ) {
 
 	foreach( $group_product as $group ) {
 ?>
-		<a class="product-gallery__link" data-href="#product-gallery-<?= $i ?>">
+		<a class="product-gallery__link" data-href="#product-gallery-<?= $i ?>" data-name="<?= $group['gskgallery_name']; ?>">
 			<?php echo wp_get_attachment_image( $group['gskgallery'][0] ); ?>
+		</a>
+<?php
+		$i++;
+	}
+}
+
+function get_first_image_enroll( $id ) {
+	$group_product = rwmb_meta( 'gskgroup_product', $id );
+	$i = 0;
+
+	foreach( $group_product as $group ) {
+?>
+		<a class="product-item-enroll" data-name="<?= $group['gskgallery_name']; ?>">
+			<span>
+				<?php echo wp_get_attachment_image( $group['gskgallery'][0] ); ?>
+			</span>
+
+			<span><?= $group['gskgallery_name']; ?></span>
 		</a>
 <?php
 		$i++;

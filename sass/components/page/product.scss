@@ -161,10 +161,102 @@
 }
 
 #enroll-btn {
+	cursor: pointer;
+	background: $yellow;
+	color: #000000;
+	height: 50px;
+	line-height: 50px;
+	display: block;
+
+	&.unactive, &.enrolled {
+		pointer-events: none;
+		opacity: 0.6;
+	}
+}
+
+#open-enroll-btn {
 	&.enrolled {
 		pointer-events: none;
 		background: #000;
 		color: #ffffff;
+	}
+}
+
+.enroll-alert {
+	text-align: center;
+	color: $orange;
+	display: none;
+
+	&.active {
+		display: block;
+	}
+}
+
+.enroll-popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 30;
+	display: none;
+	justify-content: center;
+	align-items: center;
+
+	&.active {
+		display: flex;
+	}
+
+	&__overlay {
+		background: rgba(0,0,0,0.6);
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+	}
+
+	&__content {
+		position: relative;
+		z-index: 3;
+		width: 350px;
+		background: #ffffff;
+		padding: 20px;
+
+		a {
+			text-align: center;
+		}
+
+		&__items {
+			margin: 30px 0;
+			display: flex;
+			flex-direction: column;
+
+			a {
+				flex: 0 0 100%;
+				margin:7px 0;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+
+				span:first-child {
+					overflow: hidden;
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+					margin-right: 15px;
+					border: 2px solid #fff;
+				}
+
+				&.active {
+					span:first-child {
+						border-color: $green;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -271,9 +363,15 @@
 
 		&-slider {
 			display: flex;
+			flex-wrap: wrap;
 			align-items: center;
 			justify-content: space-between;
 			margin-bottom: 100px;
+
+			&__name {
+				width: 100%;
+				flex: 0 0 100%;
+			}
 		}
 
 		.single_add_to_cart_button {
@@ -402,6 +500,12 @@ ul.products {
 		flex: 0 0 48%;
 		margin: 0 0 30px !important;
 
+		&.on_raffle {
+			a {
+				background: $orange;
+			}
+		}
+
 		a {
 			position: relative;
 			background: $yellow;
@@ -425,20 +529,31 @@ ul.products {
 		.posted_on {
 			position: absolute;
 			bottom: 15px;
-			right: 20px;
+			left: calc( 50% + 28px );
 			color: #ffffff;
 			font-weight: 300;
+			z-index: 2;
 		}
 
 		.add_to_cart_button {
 			display: none;
 		}
 
+		.remaining-raffle {
+			position: absolute;
+			top: 12px;
+			right: 10px;
+			font-size: 16px;
+			padding: 5px;
+			background: #000;
+			color: #fff;
+		}
+
 		.remaining {
 			position: absolute;
 			top: 12px;
 			left: calc( 50% + 20px );
-			font-size: 26px;
+			font-size: 22px;
 			color: #000000;
 
 			span {

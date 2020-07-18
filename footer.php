@@ -22,14 +22,14 @@
 					<a href="mailto:gsk@gmail.com" class="email">gsk@gmail.com</a>
 				</div>
 
-				<div class="social">
+				<div class="links">
 					<a href="#" class="link">Our activities overview</a>
 					<a href="#" class="link">How to do commission</a>
+				</div>
 
-					<ul>
-						<li><a href="#"><img src="<?php echo IMG . '/instagram.png' ?>"></a></li>
-						<li><a href="#"><img src="<?php echo IMG . '/discord.png' ?>"></a></li>
-					</ul>
+				<div class="social">
+					<a href="#"><img src="<?php echo IMG . '/instagram.png' ?>"></a>
+					<a href="#"><img src="<?php echo IMG . '/discord.png' ?>"></a>
 				</div>
 			</div>
 		</div>

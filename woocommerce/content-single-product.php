@@ -82,6 +82,8 @@ $is_enrolled = get_user_meta( $curUser->ID, 'enroll' )[0];
 					<div class="actions-slider">
 						<div><?php get_first_image( get_the_id() ); ?></div>
 						<?php woocommerce_template_single_price(); ?>
+
+						<h3 class="actions-slider__name"></h3>
 					</div>
 					
 					<div class="actions-login-buy">
@@ -97,10 +99,10 @@ $is_enrolled = get_user_meta( $curUser->ID, 'enroll' )[0];
 						elseif ( is_user_logged_in() && rwmb_meta( 'gskon_raffle' ) ) :
 						?>
 							<p class="countdown"></p>
-							<?php if ( $is_enrolled == '1' ) : ?>
-								<a id="enroll-btn" class="ttu sz-16 fw-300 login-request enrolled">Enrolled</a>
+							<?php if ( $is_enrolled ) : ?>
+								<a id="open-enroll-btn" class="ttu sz-16 fw-300 login-request enrolled">Enrolled</a>
 							<?php else: ?>
-								<a id="enroll-btn" class="ttu sz-16 fw-300 login-request time-out">Enroll</a>
+								<a id="open-enroll-btn" class="ttu sz-16 fw-300 login-request time-out">Enroll</a>
 							<?php endif; ?>
 						<?php
 						elseif ( ! is_user_logged_in() && rwmb_meta( 'gskon_raffle' ) ) :
@@ -144,6 +146,21 @@ $is_enrolled = get_user_meta( $curUser->ID, 'enroll' )[0];
 	 */
 	// do_action( 'woocommerce_after_single_product_summary' );
 	?>
+</div>
+
+<div class="enroll-popup">
+	<div class="enroll-popup__overlay"></div>
+
+	<div class="enroll-popup__content">
+		<h3>Choose item(s) to enroll</h3>
+
+		<div class="enroll-popup__content__items">
+			<?php get_first_image_enroll( get_the_id() ); ?>
+		</div>
+		
+		<p class="enroll-alert">Enroll Successed (close) </p>
+		<a id="enroll-btn" data-id="<?= get_the_ID() ?>" class="ttu sz-16 fw-300 unactive">Enroll</a>
+	</div>
 </div>
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>

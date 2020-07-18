@@ -35,14 +35,17 @@
 
 	if ( $( '.product-gallery' ).length !== 0 ) {
 		$( '.product-gallery__panel:first-of-type' ).addClass( 'active' )
+		$( '.actions-slider__name' ).html( $( '.product-gallery__link:first-of-type' ).attr( 'data-name' ) );
 
 		$( '.product-gallery__link' ).on( 'click', function( e ) {
 			e.preventDefault();
+			$( '.product-gallery__link' ).removeClass( 'active' )
 			$( '.product-gallery__panel' ).removeClass( 'active' )
 
 			let slider = $( $( this ).attr( 'data-href' ) );
 			slider.addClass( 'active' )
 
+			$( '.actions-slider__name' ).html( $( this ).attr( 'data-name' ) );
 			slider.find( '.product-gallery__flash' ).slick( 'resize' )
 			slider.find( '.product-gallery__nav' ).slick( 'resize' )
 		} )
@@ -74,9 +77,47 @@
 		})
 	}
 
+	$( '.enroll-popup__overlay' ).on( 'click', function() {
+		$( '.enroll-popup' ).removeClass( 'active' )
+	} )
+
+	$( '#open-enroll-btn' ).on( 'click', function() {
+		$( '.enroll-popup' ).addClass( 'active' )
+	} )
+
+	// enroll choose
+	$( '.product-item-enroll' ).on( 'click', function( e ) {
+		e.preventDefault();
+		$( this ).toggleClass( 'active' )
+
+		let chosen = 0;
+
+		$( '.product-item-enroll' ).each( function( i, e ) {
+			if ( $( e ).hasClass( 'active' ) ) {
+				chosen = 1;
+			}
+		} )
+
+		if ( 0 !== chosen ) {
+			$( '#enroll-btn' ).removeClass( 'unactive' )
+		} else {
+			$( '#enroll-btn' ).addClass( 'unactive' )
+		}
+	} )
+
 	$( '#enroll-btn' ).on( 'click', function() {
-		var $this = $( this );
-		var _data = {
+		let $this = $( this );
+		let chosen = [];
+
+		$( '.product-item-enroll' ).each( function( i, e ) {
+			if ( $( e ).hasClass( 'active' ) ) {
+				chosen.push( $( e ).attr( 'data-name' ) );
+			}
+		} )
+
+		let _data = {
+			"id"         : $this.attr( 'data-id' ),
+			"chosen"     : chosen,
 			"ip"         : php_data.ip,
 			"email"      : php_data.email,
 			"_ajax_nonce": php_data.nonce,
@@ -88,6 +129,7 @@
 			dataType: 'json',
 			data: _data,
 			success:function( res ){
+				$( '.enroll-alert' ).addClass( 'active' )
 				$this.html( '<span class="enrolled">ENROLLED</span>' )
 				$this.addClass( 'enrolled' )
 			},
@@ -172,6 +214,8 @@
 
 	$( document ).ready( function() {
 		$( 'select' ).select2()
+
+		$( '.tabs-nav a:first-of-type' ).trigger( 'click' )
 	} )
 
 	$( document ).on( 'facetwp-refresh', function() {
