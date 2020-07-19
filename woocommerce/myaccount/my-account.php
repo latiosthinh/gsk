@@ -99,7 +99,7 @@ global $raffle_id;
 
 			<button id="save-result-btn">SAVE</button>
 
-			<a href="<?= home_url( '/raffle-results' ) ?>">Go to Raffle Results</a>
+			<a href="<?= get_permalink( $raffle_id ); ?>">Go to Raffle Results</a>
 		</div>
 		
 		<div class="table-roll-result">

@@ -132,7 +132,15 @@ $is_enrolled = get_user_meta( $curUser->ID, 'enroll' )[0];
 				<img class="product-desc__img" src="<?= IMG . '/rule.png' ?>">
 			<?php endif; ?>
 
-			<?php woocommerce_output_related_products(); ?>
+			<?php 
+			
+			if ( current_user_can( 'manage_options' ) ) {
+				get_template_part( 'template-parts/content', 'raffle-results' );
+			} else {
+				woocommerce_output_related_products();
+			}
+			
+			?>
 		</div>
 	</div>
 

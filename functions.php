@@ -333,7 +333,7 @@ function submit_raffle() {
 	$data_ajax = (array) $_POST;
 	
 	foreach ( $data_ajax[ 'user_id' ] as $uid ) {
-		$default_data = get_user_meta( $uid, 'enroll_win', true ) . ' | ' . $data_ajax[ 'raffle_id' ] . '-' . $data_ajax[ 'raffle_item' ];
+		$default_data = get_user_meta( $uid, 'enroll_win', true ) . '|' . $data_ajax[ 'raffle_id' ] . '-' . $data_ajax[ 'raffle_item' ];
 		update_user_meta( $uid, 'enroll_win', $default_data );
 	}
 
