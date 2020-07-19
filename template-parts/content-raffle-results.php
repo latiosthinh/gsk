@@ -7,8 +7,6 @@ $args = [
 	'meta_query' => [
 		[
 			'key'     => 'enroll_win_id',
-			'value'   => $raffle_id,
-			'compare' => 'LIKE'
 		]
 	]
 ];
@@ -18,7 +16,22 @@ $win_users = get_users( $args );
 if ( ! $win_users ) {
 	return;
 }
+
+$user_arr = [];
+
+foreach ( $win_users as $user ) {
+	$check = explode( ',', get_user_meta( $user->ID, 'enroll_win_id', true ) );
+
+	if ( in_array( $raffle_id, $check ) ) {
+		array_push( $user_arr, $user );
+	}
+}
+
+if ( ! $user_arr ) {
+	return;
+}
 ?>
+
 <table class="list-user">
 	<thead>
 		<tr>
@@ -33,7 +46,7 @@ if ( ! $win_users ) {
 	</thead>
 	<tbody class="current-list">
 <?php
-foreach ( $win_users as $user ) {
+foreach ( $user_arr as $user ) {
 	$ip       = get_user_meta( $user->ID, 'gsk_ip_address' )[0];
 	$banned   = get_user_meta( $user->ID, 'banned' )[0];
 	$items    = get_user_meta( $user->ID, 'enroll_win', true );
