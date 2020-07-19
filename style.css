@@ -1053,6 +1053,16 @@ thead {
 	background: #ffa200;
 }
 
+.personal-winning-raffle h3 {
+	font-size: 30px;
+	margin-bottom: 30px;
+}
+
+.personal-winning-raffle__item {
+	text-transform: uppercase;
+	color: #000000;
+}
+
 .pad-0 {
 	padding: 0;
 }

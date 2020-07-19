@@ -134,5 +134,34 @@ global $raffle_id;
 			do_action( 'woocommerce_account_content' );
 		?>
 	</div>
+
+	<div class="container personal-winning-raffle">
+		<h3 class="txt-center txt-yl">Winning Raffle</h3>
+
+		<div class="row">
+		<?php
+		$curUser = wp_get_current_user();
+		$win_list = array_filter( explode( ',', get_user_meta( $curUser->ID, 'enroll_win_id', true ) ) );
+
+		$args = [
+			'post_type' => 'product',
+			'post__in'  => $win_list
+		];
+
+		$raffle_query = new WP_Query($args);
+
+		if ( $raffle_query->have_posts() ) :
+			while ( $raffle_query->have_posts() ) : $raffle_query->the_post();
+		?>
+		<a href="<?php the_permalink() ?>" class="col-md-3 personal-winning-raffle__item">
+			<?php the_post_thumbnail( 'size-woocommerce_thumbnail' ) ?>
+			<?php the_title() ?>
+		</a>
+		<?php
+			endwhile;
+		endif;
+		?>
+		</div>
+	</div>
 <?php
 }

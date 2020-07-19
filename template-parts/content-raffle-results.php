@@ -20,7 +20,7 @@ if ( ! $win_users ) {
 $user_arr = [];
 
 foreach ( $win_users as $user ) {
-	$check = explode( ',', get_user_meta( $user->ID, 'enroll_win_id', true ) );
+	$check = array_filter( explode( ',', get_user_meta( $user->ID, 'enroll_win_id', true ) ) );
 
 	if ( in_array( $raffle_id, $check ) ) {
 		array_push( $user_arr, $user );
