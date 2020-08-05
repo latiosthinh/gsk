@@ -38,11 +38,20 @@
 		h3 {
 			text-align: center;
 			margin-top: 35px;
+
+			@media all and (max-width:991px) {
+				font-size: 25px;
+				margin-top: 100px;
+			}
 		}
 
 		h4 {
 			font-size: 75px;
 			margin-top: 50px;
+
+			@media all and (max-width:991px) {
+				font-size: 50px;
+			}
 		}
 
 		img {
@@ -63,6 +72,11 @@
 			font-size: 75px;
 			margin-top: 50px;
 			margin: 40px 0;
+
+			@media all and (max-width:991px) {
+				font-size: 30px;
+				margin-top: 100px;
+			}
 		}
 	}
 }

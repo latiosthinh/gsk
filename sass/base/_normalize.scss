@@ -116,16 +116,6 @@ sup {
 	top: -0.5em;
 }
 
-/* Embedded content
-	 ========================================================================== */
-
-/**
- * Remove the border on images inside links in IE 10.
- */
-img {
-	border-style: none;
-}
-
 /* Forms
 	 ========================================================================== */
 
@@ -431,6 +421,7 @@ dd {
 img {
 	height: auto;
 	max-width: 100%;
+	display: block;
 	object-fit: cover;
 }
 

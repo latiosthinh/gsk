@@ -160,11 +160,20 @@
 		button.button {
 			margin: 0 50px;
 
+			@media all and (max-width:991px) {
+				margin: 0;
+			}
+
 			&[name=update_cart] {
 				position: absolute;
 				right: 0;
 				top: 50%;
 				transform: translateY(-50%);
+
+				@media all and (max-width:991px) {
+					position: inherit;
+					transform: none;
+				}
 			}
 		}
 	}
@@ -259,5 +268,11 @@
 
 	a {
 		margin: 0 auto;
+	}
+}
+
+.woocommerce form.checkout_coupon, .woocommerce form.login, .woocommerce form.register {
+	@media all and (max-width:991px) {
+		padding: 0;
 	}
 }

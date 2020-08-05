@@ -1,7 +1,25 @@
 .woocommerce-info {
-    border-top-color: $yellow;
+	border-top-color: $yellow;
 
-    &:before {
-        color: $yellow;
-    }
+	&:before {
+		color: $yellow;
+	}
+}
+
+.entry-content {
+	> .woocommerce {
+		margin-top: 100px;
+	}
+}
+
+.woocommerce-error, .woocommerce-info, .woocommerce-message {
+	@media all and (max-width:991px) {
+		padding: 16px 45px 10px;
+		display: flex;
+		flex-direction: column;
+
+		> a {
+			order: 2;
+		}
+	}
 }

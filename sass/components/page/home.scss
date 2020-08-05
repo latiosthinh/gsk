@@ -2,6 +2,10 @@
 	.products-slider {
 		transform: translateX(100px);
 		margin: 100px 0 80px;
+
+		@media all and (max-width:991px) {
+			transform: none;
+		}
 		.slick-list {
 			overflow-x: hidden;
 			overflow-y: visible !important;
@@ -63,11 +67,19 @@
 			&.slick-next {
 				left: calc( 70% + 80px );
 				background: $yellow;
+
+				@media all and (max-width:991px) {
+					left: 95px;
+				}
 			}
 
 			&.slick-prev {
 				left: 70%;
 				background: #b2b2b2;
+
+				@media all and (max-width:991px) {
+					left: 15px;
+				}
 			}
 		}
 
@@ -90,6 +102,10 @@
 					position: absolute;
 					right: 0;
 					bottom: 0;
+
+					@media all and (max-width:991px) {
+						position: inherit;
+					}
 				}
 			}
 		}
@@ -124,6 +140,10 @@
 			border: 5px solid $yellow;
 			margin-bottom: 50px;
 			border-radius: 5px;
+
+			@media all and (max-width:991px) {
+				width: 100%;
+			}
 		}
 
 		p {
@@ -229,6 +249,12 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 2;
+
+		@media all and (max-width:991px) {
+			position: inherit;
+			padding: 50px 15px;
+			transform: none;
+		}
 	}
 
 	h3 {

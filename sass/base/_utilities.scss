@@ -37,6 +37,10 @@
 }
 .sz-60 {
     font-size: 60px;
+
+    @media all and (max-width:991px) {
+        font-size: 30px;
+    }
 }
 .sz-80 {
     font-size: 72px;

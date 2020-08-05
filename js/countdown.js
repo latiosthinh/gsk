@@ -67,6 +67,7 @@
 						<span>${seconds} <i>SECONDS</i></span>`;
 	
 			$( '.countdown' ).html( html )
+			$( '.time-out' ).html( 'WAITING' ).css( 'pointer-events', 'none' );
 	
 			if (distance < 0) {
 				clearInterval(y);

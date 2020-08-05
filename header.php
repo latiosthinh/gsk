@@ -27,6 +27,7 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-nav">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span></span></button>
 			<div class="site-branding">
 				<?php the_custom_logo(); ?>
 			</div>
@@ -42,7 +43,6 @@
 			</ul>
 
 			<nav id="site-navigation" class="main-navigation container-fluid">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'gsk' ); ?></button>
 				<?php
 				wp_nav_menu(
 					[

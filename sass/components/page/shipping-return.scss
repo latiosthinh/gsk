@@ -6,6 +6,10 @@
             font-size: 36px;
             font-weight: 300;
             margin-bottom: 15px;
+
+            @media all and (max-width:991px) {
+                font-size: 25px;
+            }
         }
 
         p{
@@ -32,6 +36,11 @@
         margin: 65px auto;
         padding: 10px 20px;
         background: $yellow;
+
+        @media all and (max-width:991px) {
+            font-size: 22px;
+            margin: 100px 0 50px;
+        }
     }
 
     .tabs {
@@ -52,6 +61,13 @@
             border: 1px solid $yellow;
             color: #000000;
             position: relative;
+
+            @media all and (max-width:991px) {
+                padding: 5px;
+                margin: 10px 0;
+                text-transform: lowercase;
+                font-size: 12px;
+            }
 
             &:after {
                 content: '';
@@ -87,6 +103,10 @@
             align-items: center;
             display: none;
 
+            @media all and (max-width:991px) {
+                padding: 10px;
+            }
+
             &.active {
                 display: flex;
             }
@@ -104,6 +124,11 @@
         color: $yellow;
         margin: 50px 0;
 
+        @media all and (max-width:991px) {
+            margin: 100px 0 50px;
+            font-size: 30px;
+        }
+
         &:after {
             content: '';
             display: block;
@@ -120,6 +145,10 @@
             background: #ffffff;
             padding: 75px 55px 150px;
             width: 90%;
+
+            @media all and (max-width:991px) {
+                width: 100%;
+            }
         }
 
         h3 {

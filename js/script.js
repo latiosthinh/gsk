@@ -5,6 +5,10 @@
 		$( this ).parent().toggleClass( 'active' )
 	} )
 
+	$( '.menu-toggle' ).on( 'click', () => {
+		$( '.site-nav' ).toggleClass( 'toggle' )
+	} )
+
 	$( '.tabs-nav a' ).click( function( e ) {
 		e.preventDefault()
 
@@ -21,6 +25,15 @@
 			slidesToScroll: 1,
 			prevArrow: '<a class="slick-prev"><img src="' + php_data.img_dir + '/prev.png" /></a>',
 			nextArrow: '<a class="slick-next"><img src="' + php_data.img_dir + '/next.png" /></a>',
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1,
+					}
+				}
+			]
 		})
 	}
 
@@ -30,6 +43,15 @@
 			slidesToScroll: 1,
 			prevArrow: '<a class="slick-prev"><img src="' + php_data.img_dir + '/prev.png" /></a>',
 			nextArrow: '<a class="slick-next"><img src="' + php_data.img_dir + '/next.png" /></a>',
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1,
+					}
+				}
+			]
 		})
 	}
 

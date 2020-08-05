@@ -5,6 +5,10 @@ footer {
 	
 	.row {
 		justify-content: space-between;
+
+		@media all and (max-width:991px) {
+			padding: 0 15px;
+		}
 	}
 
 	.info {

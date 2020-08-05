@@ -94,7 +94,7 @@ $is_enrolled = get_user_meta( $curUser->ID, 'enroll' )[0];
 							woocommerce_template_single_add_to_cart();
 						elseif ( ! is_user_logged_in() && ! rwmb_meta( 'gskon_raffle' ) ) :
 						?>
-								<a class="ttu sz-16 fw-300 login-request no-raffle" href="<?php echo home_url( 'dashboard' ) ?>">Login Request</a>
+								<a class="ttu sz-16 fw-300 login-request no-raffle" href="<?php echo home_url( '/my-account' ) ?>">Login Request</a>
 						<?php
 						elseif ( is_user_logged_in() && rwmb_meta( 'gskon_raffle' ) ) :
 						?>
@@ -129,7 +129,6 @@ $is_enrolled = get_user_meta( $curUser->ID, 'enroll' )[0];
 		<div class="col-md-10">
 			<?php if ( rwmb_meta( 'gskon_raffle' ) ) : ?>
 				<img class="product-desc__img" src="<?= IMG . '/wish.png' ?>">
-				<img class="product-desc__img" src="<?= IMG . '/rule.png' ?>">
 			<?php endif; ?>
 
 			<?php 
