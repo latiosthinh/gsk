@@ -1045,6 +1045,10 @@ thead {
 	background: #ffa200;
 }
 
+thead td {
+	text-align: center;
+}
+
 .personal-winning-raffle h3 {
 	font-size: 30px;
 	margin-bottom: 30px;
@@ -1360,12 +1364,7 @@ thead {
 	z-index: 9;
 }
 
-.main-navigation ul {
-	display: flex;
-	flex-direction: column;
-}
-
-.main-navigation ul a {
+.main-navigation a {
 	font-family: "iCiel", sans-serif;
 	text-transform: uppercase;
 	font-weight: 300;
@@ -1374,9 +1373,14 @@ thead {
 }
 
 @media all and (max-width: 991px) {
-	.main-navigation ul a {
+	.main-navigation a {
 		font-size: 16px;
 	}
+}
+
+.main-navigation ul {
+	display: flex;
+	flex-direction: column;
 }
 
 .main-navigation ul li {
@@ -2463,6 +2467,10 @@ section.selection .name h3 {
 	color: #ffa200;
 }
 
+.woocommerce a.button.product_type_simple {
+	display: none !important;
+}
+
 .woocommerce .actions {
 	position: relative;
 }
@@ -2622,7 +2630,7 @@ section.selection .name h3 {
 }
 
 .post-type-archive-product .widget-area .woocommerce-product-search input {
-	flex: 0 0 70%;
+	width: 200px;
 	height: 40px;
 	border-radius: 0;
 }
@@ -2632,7 +2640,7 @@ section.selection .name h3 {
 	background: #ffa200;
 	height: 40px;
 	border: 0;
-	flex: 0 0 30%;
+	width: 70px;
 	text-transform: uppercase;
 	cursor: pointer;
 	transition: .2s;
@@ -3213,6 +3221,68 @@ ul.products li .woocommerce-loop-product__title {
 .gsk-filter-checkbox .facetwp-facet {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+.woocommerce-orders-table__cell-order-actions {
+	display: flex;
+}
+
+.woocommerce-orders-table__cell-order-actions a.button.woocommerce-button {
+	width: 70px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 12px;
+	text-transform: none;
+}
+
+.woocommerce-table__product-name {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.woocommerce-table__product-name a {
+	display: inline-flex;
+	align-items: center;
+	width: 60%;
+}
+
+.woocommerce-table__product-name img {
+	width: 50px;
+	margin-right: 30px;
+}
+
+.woocommerce-table__product-name strong {
+	text-align: center;
+	display: block;
+	width: calc( 40% - 25px);
+}
+
+.woocommerce nav.woocommerce-pagination ul {
+	border: 0;
+}
+
+.woocommerce nav.woocommerce-pagination ul li {
+	border-right: 0;
+	margin: 0 5px;
+}
+
+.woocommerce nav.woocommerce-pagination ul li span.current {
+	color: #000000;
+	background: #ffa200;
+}
+
+.woocommerce nav.woocommerce-pagination ul li a {
+	color: #ffa200;
+	background: #000000;
+}
+
+.woocommerce nav.woocommerce-pagination ul li span.current, .woocommerce nav.woocommerce-pagination ul li a {
+	display: block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0;
 }
 
 .page-template-catalog .text-title {

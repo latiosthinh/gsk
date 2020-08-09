@@ -33,6 +33,13 @@ printf(
 ?>
 </p>
 
+<?php if ( 'Shipping' === wc_get_order_status_name( $order->get_status() ) ) : ?>
+<hr>
+<p>Shipping unit: <?php echo rwmb_meta( 'shipping_unit', null, $order->get_order_number() ) ? rwmb_meta( 'shipping_unit', null, $order->get_order_number() ) : ''; ?></p>
+<p>Shipping code: <?php echo rwmb_meta( 'shipping_code', null, $order->get_order_number() ) ? rwmb_meta( 'shipping_code', null, $order->get_order_number() ) : ''; ?></p>
+<hr>
+<?php endif; ?>
+
 <?php if ( $notes ) : ?>
 	<h2><?php esc_html_e( 'Order updates', 'woocommerce' ); ?></h2>
 	<ol class="woocommerce-OrderUpdates commentlist notes">

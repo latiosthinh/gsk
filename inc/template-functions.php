@@ -53,6 +53,23 @@ function get_url_by_template( $template ){
     return $url;
 }
 
+function get_page_id_by_template( $template ) {
+    $args = [
+		'post_type'  => 'page',
+		'fields'     => 'ids',
+        'meta_key'   => '_wp_page_template',
+        'meta_value' => $template->name
+	];
+	
+	$pages = query_posts( $args );
+	
+	if ( ! isset( $pages[0] ) ) {
+		return;
+	}
+
+    return $pages;
+}
+
 function get_first_image( $id ) {
 	$group_product = rwmb_meta( 'gskgroup_product', $id );
 	$i = 0;

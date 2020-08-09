@@ -17,19 +17,33 @@
 				<?php the_custom_logo(); ?>
 
 				<div class="info">
-					<p class="address">No 94, 5A Street, Binh Hung Hoa A Ward, <br> Tan Phu District HCMC, 700000, Vietnam.</p>
-
-					<a href="mailto:gsk@gmail.com" class="email">gsk@gmail.com</a>
+					<?php if ( rwmb_meta( 'gsk_address', null, get_option( 'page_on_front' ) ) ) : ?>
+						<p class="address"><?= rwmb_meta( 'gsk_address', null, get_option( 'page_on_front' ) ) ?></p>
+					<?php endif; ?>
+					
+					<?php if ( rwmb_meta( 'gsk_email', null, get_option( 'page_on_front' ) ) ) : ?>
+						<a href="mailto:<?= rwmb_meta( 'gsk_email', null, get_option( 'page_on_front' ) ) ?>" class="email"><?= rwmb_meta( 'gsk_email', null, get_option( 'page_on_front' ) ) ?></a>
+					<?php endif; ?>
+					
 				</div>
 
 				<div class="links">
-					<a href="#" class="link">Our activities overview</a>
-					<a href="#" class="link">How to do commission</a>
+					<?php 
+					$links = rwmb_meta( 'gsk_links', null, get_option( 'page_on_front' ) );
+
+					if ( $links ) :
+						foreach ( $links as $l ) :
+					?>
+						<a href="<?= $l[ 'url' ] ?>" class="link"><?= $l[ 'title' ] ?></a>
+					<?php
+						endforeach;
+					endif;
+					?>
 				</div>
 
 				<div class="social">
-					<a href="#"><img src="<?php echo IMG . '/instagram.png' ?>"></a>
-					<a href="#"><img src="<?php echo IMG . '/discord.png' ?>"></a>
+					<a href="<?= rwmb_meta( 'gsk_instagram', null, get_option( 'page_on_front' ) ) ?>"><img src="<?php echo IMG . '/instagram.png' ?>"></a>
+					<a href="<?= rwmb_meta( 'gsk_discord', null, get_option( 'page_on_front' ) ) ?>"><img src="<?php echo IMG . '/discord.png' ?>"></a>
 				</div>
 			</div>
 		</div>

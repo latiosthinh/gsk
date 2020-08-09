@@ -43,6 +43,9 @@
 			</ul>
 
 			<nav id="site-navigation" class="main-navigation container-fluid">
+				<?php if ( current_user_can( 'manage_options' ) ) : ?>
+					<a href="<?= home_url( '/users' ); ?>"><?php esc_html_e( 'Users' , 'gsk' ) ?></a>
+				<?php endif; ?>
 				<?php
 				wp_nav_menu(
 					[
@@ -82,6 +85,7 @@
 		<?php
 			$args = [
 				'post_type'  => 'product',
+				'posts_per_page' => 1,
 				'meta_query' => [
 					[
 						'key'   => 'gskon_raffle',

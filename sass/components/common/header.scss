@@ -155,20 +155,21 @@
 	position: relative;
 	z-index: 9;
 
+	a {
+		font-family: $f1;
+		text-transform: uppercase;
+		font-weight: 300;
+		font-size: 20px;
+		color: #000000;
+
+		@media all and (max-width:991px) {
+			font-size: 16px;
+		}
+	}
+
 	ul {
 		display: flex;
 		flex-direction: column;
-		a {
-			font-family: $f1;
-			text-transform: uppercase;
-			font-weight: 300;
-			font-size: 20px;
-			color: #000000;
-
-			@media all and (max-width:991px) {
-				font-size: 16px;
-			}
-		}
 
 		li {
 			display: inline-block;

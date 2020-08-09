@@ -135,7 +135,7 @@ get_header();
 				<div class="row">
 					<div class="col-md-6">
 						<?php $page_about = get_page_by_path( 'about-us' ); ?>
-						<?= $page_about->post_content; ?>
+						<?= the_content; ?>
 
 						<div class="logo">
 							<img src="<?= IMG . '/logo-gold.png' ?>" alt="gsk">

@@ -209,7 +209,6 @@ function gsk_add_woocommerce_support() {
 add_action( 'after_setup_theme', 'gsk_add_woocommerce_support' );
 
 add_action( 'user_register', 'gsk_get_user_ip' );
-
 function gsk_get_user_ip( $user_id ) {
 	if ( ! empty($_SERVER['HTTP_CLIENT_IP']) ) {
 		$ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -220,6 +219,15 @@ function gsk_get_user_ip( $user_id ) {
 	}
 
 	update_user_meta( $user_id, 'gsk_ip_address', $ip );
+}
+
+add_action( 'user_register', 'gsk_update_user_community' );
+function gsk_update_user_community( $user_id ) {
+	if ( empty( $_POST[ 'communitiy_name' ] ) ) {
+		return;
+	}
+
+	update_user_meta( $user_id, 'communitiy_name', $_POST[ 'communitiy_name' ] );
 }
 
 add_filter( 'rwmb_profile_after_save_user', function() {
@@ -405,3 +413,91 @@ add_filter( 'facetwp_facet_html', function( $html, $args ) {
 	return $html;
 
 }, 10, 2);
+
+
+// Register new status
+function register_awaiting_shipment_order_status() {
+	register_post_status( 'wc-shipped', array(
+		'label'                     => 'Shipping',
+		'public'                    => true,
+		'exclude_from_search'       => false,
+		'show_in_admin_all_list'    => true,
+		'show_in_admin_status_list' => true,
+		'label_count'               => _n_noop( 'Shipping (%s)', 'Shipped (%s)' )
+	) );
+}
+add_action( 'init', 'register_awaiting_shipment_order_status' );
+
+// Add to list of WC Order statuses
+function add_awaiting_shipment_to_order_statuses( $order_statuses ) {
+	$new_order_statuses = array();
+	// add new order status after processing
+	foreach ( $order_statuses as $key => $status ) {
+		$new_order_statuses[ $key ] = $status;
+		if ( 'wc-processing' === $key ) {
+			$new_order_statuses['wc-shipped'] = 'Shipping';
+		}
+	}
+	return $new_order_statuses;
+}
+add_filter( 'wc_order_statuses', 'add_awaiting_shipment_to_order_statuses' );
+
+
+function new_modify_user_table( $column ) {
+	$column['ip'] = 'IP';
+	$column['win_times'] = 'Win Times';
+	$column['status'] = 'Status';
+
+	return $column;
+}
+add_filter( 'manage_users_columns', 'new_modify_user_table' );
+
+function new_modify_user_table_row( $val, $column_name, $user_id ) {
+	switch ( $column_name ) {
+		case 'ip' :
+			return get_user_meta( $user_id, 'gsk_ip_address' )[0];
+		case 'win_times':
+			$items = get_user_meta( $user_id, 'enroll_win', true );
+			$times = explode( '|', $items );
+			return count( $times ) === 1 ? '' : count( $times ) - 1;
+		case 'status' :
+			return get_user_meta( $user_id, 'banned' )[0] == '1' ? '<span style="color:#fff;background:#000;padding:5px;">Banned</span>' : '';
+		default:
+	}
+	return $val;
+}
+add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
+
+function add_user_status_filter() {
+	echo '<input type="submit" name="banned" class="button" value="Banned list" style="margin-left:10px;color:#fff;background:#000">';
+}
+add_action( 'restrict_manage_users', 'add_user_status_filter' );
+
+function filter_users_by_user_status( $query ) {
+	global $pagenow;
+
+	if ( is_admin() && 'users.php' == $pagenow) {
+		$section = $_GET[ 'banned' ];
+		if ( null !== $section ) {
+			$meta_query = array(
+				array(
+					'key' => 'banned',
+					'value' => '1'
+				)
+			);
+			$query->set( 'meta_key', 'banned' );
+			$query->set( 'meta_query', $meta_query );
+		}
+	}
+}
+add_filter( 'pre_get_users', 'filter_users_by_user_status' );
+
+function order_user_by_ip( $query ) {
+	global $pagenow;
+
+	if ( is_admin() && 'users.php' == $pagenow) {
+		$query->set( 'meta_key', 'gsk_ip_address' );
+		$query->set( 'orderby', 'meta_value' );
+	}
+}
+add_filter( 'pre_get_users', 'order_user_by_ip' );

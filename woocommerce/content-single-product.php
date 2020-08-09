@@ -128,7 +128,6 @@ $is_enrolled = get_user_meta( $curUser->ID, 'enroll' )[0];
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
 			<?php if ( rwmb_meta( 'gskon_raffle' ) ) : ?>
-				<img class="product-desc__img" src="<?= IMG . '/wish.png' ?>">
 			<?php endif; ?>
 
 			<?php 

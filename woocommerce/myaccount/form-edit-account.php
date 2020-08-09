@@ -48,15 +48,14 @@ defined( 'ABSPATH' ) || exit;
 	<div class="clear"></div>
 
 	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-		<label for="communitiy_name"><?php esc_html_e( 'Communities', 'woocommerce' ); ?></label>
-		<?php
-		$communities = rwmb_meta( 'communities', array( 'object_type' => 'user' ), $user->ID );
-		
-		foreach ( $communities as $com ) :
-		?>
-		<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="communitiy_name" id="communitiy_name" value="<?php echo esc_attr( $com[ 'community_name' ] ); ?>" />
-		<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="communitiy_id" id="communitiy_id" value="<?php echo esc_attr( $com[ 'community_id' ] ); ?>" />
-		<?php endforeach; ?>
+		<label for="communitiy_name">Communities <i>(comumnity_name - community_id)</i></label>
+
+		<input type="text" 
+		class="woocommerce-Input woocommerce-Input--text input-text" 
+		name="communitiy_name" id="communitiy_name" 
+		value="<?= esc_attr( rwmb_meta( 'communitiy_name', [ 'object_type' => 'user' ], $user->ID ) ); ?>"
+		placeholder="<?= esc_attr( 'Ex: discord - cowboy123, skype - cowboy123' ) ?>"
+		/>
 	</p>
 
 	<fieldset>
